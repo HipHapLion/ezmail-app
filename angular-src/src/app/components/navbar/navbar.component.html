@@ -12,12 +12,12 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-left">
-        <li><a [routerLink]="['/']" >Home</a></li>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/']" >Home</a></li>
       </ul>
       <!--navbar right-->
       <ul class="nav navbar-nav navbar-right">
-        <li><a [routerLink]="['/login']" >Login</a></li>
-        <li><a [routerLink]="['/register']" >Register</a></li>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/login']" >Login</a></li>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/register']" >Register</a></li>
       </ul>
     </div>
   </div>

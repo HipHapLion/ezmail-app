@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+@import "sass/variables_cosmo";
+$icon-font-path: '../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
+@import "../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "sass/bootswatch_cosmo";
+@import "../node_modules/bootstrap-sass/assets/stylesheets/bootstrap-compass";
+$fa-font-path: "fonts/";
+@import "../node_modules/font-awesome/scss/font-awesome";
+@import "sass/functions";
+@import "sass/custom"; 

@@ -33,7 +33,7 @@ export class AuthService {
     headers.append('Authorization', this.authToken);
     headers.append('Content-Tpye', 'application/json');
     // return this.http.get('http://localhost:3000/users/profile', { headers: headers }).map(res => res.json());
-    return this.http.post('/users/profile', {headers: headers}).map(res => res.json());
+    return this.http.get('/users/profile', {headers: headers}).map(res => res.json());
   }
 
   storeUserData(token, user) {

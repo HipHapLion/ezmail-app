@@ -7,4 +7,12 @@ $icon-font-path: '../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
 $fa-font-path: "fonts/";
 @import "../node_modules/font-awesome/scss/font-awesome";
 @import "sass/functions";
-@import "sass/custom"; 
+@import "sass/custom";
+
+.loading-text {
+    font-size: 50px;
+    padding-left: 50px;
+    padding-top: 250px;
+    text-align: center;
+    // background-color: lightgrey;
+}

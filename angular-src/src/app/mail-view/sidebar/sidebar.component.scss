@@ -1,7 +1,11 @@
 
-body,html{
+body,html {
     height: 100%;
-  }
+}
+
+.navbar {
+    margin-top: -22px;
+}
 
   nav.sidebar, .main{
     -webkit-transition: margin 200ms ease-out;
@@ -117,5 +121,5 @@ body,html{
   section{
     padding-left: 15px;
   }
-  
+
  

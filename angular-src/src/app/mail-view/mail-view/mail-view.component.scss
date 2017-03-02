@@ -1,3 +1,27 @@
 .row {
     margin-right: 0px;
 }
+.navbar {
+    margin-top: -22px;
+}
+
+.card {
+    .container {
+        width: inherit;
+        hr {
+            width: 95%;
+            margin-left: 0px;
+        }
+    }
+
+    p {
+        padding: 0px 16px;
+        padding-bottom: 15px;
+        word-break: inherit;
+    }
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}

@@ -12,6 +12,8 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import {MailViewComponent} from './mail-view/mail-view/mail-view.component';
+import {SidebarComponent} from './mail-view/sidebar/sidebar.component';
 
 import {ValidateService} from './services/validate.service';
 import {AuthService} from "./services/auth.service";
@@ -25,7 +27,8 @@ const appRoutes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
-  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]}
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: 'mail-view', component: MailViewComponent, canActivate: [AuthGuard]}
 ]
 
 @NgModule({
@@ -36,7 +39,9 @@ const appRoutes: Routes = [
     RegisterComponent,
     HomeComponent,
     ProfileComponent,
-    DashboardComponent
+    DashboardComponent,
+    MailViewComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

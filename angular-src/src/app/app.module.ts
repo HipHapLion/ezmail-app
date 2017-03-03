@@ -13,7 +13,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { MailViewComponent } from './mail-view/mail-view/mail-view.component';
 import { SidebarComponent } from './mail-view/sidebar/sidebar.component';
-import {ComposeComponent} from "./compose/compose-component/compose.component";
+import { ComposeComponent } from "./compose/compose-component/compose.component";
 import { UserAccountComponent } from './components/user-account/user-account.component';
 
 import { ValidateService } from './services/validate.service';
@@ -24,13 +24,13 @@ import { AuthGuard } from './guards/auth.guard';
 // import 
 
 const appRoutes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+  { path: '', component: HomeComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'mail-view', component: MailViewComponent, canActivate: [AuthGuard] },
-  {path: 'compose', component: ComposeComponent, canActivate: [AuthGuard]},
-  {path: 'user-account', component: UserAccountComponent, canActivate: [AuthGuard]}
+  { path: 'compose', component: ComposeComponent, canActivate: [AuthGuard] },
+  { path: 'user-account', component: UserAccountComponent, canActivate: [AuthGuard] }
 ]
 
 @NgModule({

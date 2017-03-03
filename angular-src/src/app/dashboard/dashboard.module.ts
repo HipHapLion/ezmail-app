@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {Routes} from '@angular/router';
+// import {Routes} from '@angular/router';
 
-import { DashboardComponent } from './dashboard-component/dashboard.component';
-import {AuthGuard} from '../guards/auth.guard';
+// import { DashboardComponent } from './dashboard-component/dashboard.component';
+// import {AuthGuard} from '../guards/auth.guard';
 
 
 
@@ -11,6 +11,6 @@ import {AuthGuard} from '../guards/auth.guard';
   imports: [
     CommonModule
   ],
-  declarations: [ DashboardComponent ]
+  declarations: []
 })
 export class DashboardModule { }

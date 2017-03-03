@@ -11,9 +11,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
-import { ProfileComponent } from './components/profile/profile.component';
 import { MailViewComponent } from './mail-view/mail-view/mail-view.component';
 import { SidebarComponent } from './mail-view/sidebar/sidebar.component';
+import {ComposeComponent} from "./compose/compose-component/compose.component";
+import { UserAccountComponent } from './components/user-account/user-account.component';
 
 import { ValidateService } from './services/validate.service';
 import { AuthService } from "./services/auth.service";
@@ -23,12 +24,13 @@ import { AuthGuard } from './guards/auth.guard';
 // import 
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: 'mail-view', component: MailViewComponent, canActivate: [AuthGuard] }
+  {path: '', component: HomeComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+  { path: 'mail-view', component: MailViewComponent, canActivate: [AuthGuard] },
+  {path: 'compose', component: ComposeComponent, canActivate: [AuthGuard]},
+  {path: 'user-account', component: UserAccountComponent, canActivate: [AuthGuard]}
 ]
 
 @NgModule({
@@ -38,10 +40,12 @@ const appRoutes: Routes = [
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    ProfileComponent,
-    DashboardComponent,
     MailViewComponent,
-    SidebarComponent
+    SidebarComponent,
+    DashboardComponent,
+    ComposeComponent,
+    UserAccountComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

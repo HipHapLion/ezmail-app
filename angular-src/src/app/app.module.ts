@@ -20,6 +20,7 @@ import { ValidateService } from './services/validate.service';
 import { AuthService } from "./services/auth.service";
 
 import { AuthGuard } from './guards/auth.guard';
+import { OverviewComponent } from './components/overview/overview.component';
 
 // import 
 
@@ -27,6 +28,7 @@ const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'overview', component: OverviewComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'mail-view', component: MailViewComponent, canActivate: [AuthGuard] },
   { path: 'compose', component: ComposeComponent, canActivate: [AuthGuard] },
@@ -45,7 +47,8 @@ const appRoutes: Routes = [
     DashboardComponent,
     ComposeComponent,
     UserAccountComponent,
-    DashboardComponent
+    DashboardComponent,
+    OverviewComponent
   ],
   imports: [
     BrowserModule,

@@ -23,8 +23,8 @@ export class AuthService {
   authenticateUser(user) {
     let headers = new Headers();
     headers.append('Content-Tpye', 'application/json');
-    // return this.http.post('http://localhost:3000/users/authenticate', user, { headers: headers }).map(res => res.json());
-    return this.http.post('/users/authenticate', user, {headers: headers}).map(res => res.json());
+    return this.http.post('http://localhost:3000/users/authenticate', user, { headers: headers }).map(res => res.json());
+    // return this.http.post('/users/authenticate', user, {headers: headers}).map(res => res.json());
   }
 
   getProfile() {
@@ -32,8 +32,8 @@ export class AuthService {
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Tpye', 'application/json');
-    // return this.http.get('http://localhost:3000/users/profile', { headers: headers }).map(res => res.json());
-    return this.http.get('/users/profile', {headers: headers}).map(res => res.json());
+    return this.http.get('http://localhost:3000/users/profile', { headers: headers }).map(res => res.json());
+    // return this.http.get('/users/profile', {headers: headers}).map(res => res.json());
   }
 
   storeUserData(token, user) {

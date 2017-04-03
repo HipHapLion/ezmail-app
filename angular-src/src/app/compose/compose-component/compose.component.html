@@ -1,142 +1,52 @@
 <div class="container">
-    <div class="col-md-12 col-sm-11 main" style="min-height: 1246px;">
-        <div class="row inbox">
-            <div class="col-md-3">
-                <div class="panel panel-default">
-                    <div class="panel-body inbox-menu">
-                        <a href="page-inbox-compose.html" class="btn btn-danger btn-block">New Email</a>
-                        <ul>
-                            <li>
-                                <a href="page-inbox.html"><i class="fa fa-inbox"></i> Inbox <span class="label label-danger">4</span></a>
-                            </li>
-                            <li>
-                                <a href="page-inbox-compose.html#"><i class="fa fa-star"></i> Stared</a>
-                            </li>
-                            <li>
-                                <a href="page-inbox-compose.html#"><i class="fa fa-rocket"></i> Sent</a>
-                            </li>
-                            <li>
-                                <a href="page-inbox-compose.html#"><i class="fa fa-trash-o"></i> Trash</a>
-                            </li>
-                            <li>
-                                <a href="page-inbox-compose.html#"><i class="fa fa-bookmark"></i> Important<span class="label label-info">5</span></a>
-                            </li>
-                            <li class="title">
-                                Labels
-                            </li>
-                            <li>
-                                <a href="page-inbox-compose.html#">Home <span class="label label-danger"></span></a>
-                            </li>
-                            <li>
-                                <a href="page-inbox-compose.html#">Job <span class="label label-info"></span></a>
-                            </li>
-                            <li>
-                                <a href="page-inbox-compose.html#">Clients <span class="label label-success"></span></a>
-                            </li>
-                            <li>
-                                <a href="page-inbox-compose.html#">News <span class="label label-warning"></span></a>
-                            </li>
-                        </ul>
+    <div class="well">
+        <form class="form-horizontal">
+            <fieldset>
+                <legend>Legend</legend>
+                <div class="form-group">
+                    <label for="account" class="col-lg-2 control-label">From</label>
+                    <div class="col-lg-10">
+                        <input type="account" [(ngModel)]="account" name="account" class="form-control" id="account" placeholder="Sender">
                     </div>
                 </div>
-                <div class="panel panel-default">
-                    <div class="panel-body contacts">
-                        <a href="page-inbox-compose.html#" class="btn btn-success btn-block"> + Contact</a>
-                        <ul>
-                            <li><span class="label label-danger"></span> Adam Alister</li>
-                            <li><span class="label label-default"></span> Alphonse Ivo</li>
-                            <li><span class="label label-success"></span> Anton Phunihel</li>
-                            <li><span class="label label-success"></span> Ajith Hristijan</li>
-                            <li><span class="label label-warning"></span> Bao Gaspar</li>
-                            <li><span class="label label-default"></span> Bernhard Shelah</li>
-                            <li><span class="label label-success"></span> Bünyamin Kasper</li>
-                            <li><span class="label label-danger"></span> Carlito Roffe</li>
-                            <li><span class="label label-danger"></span> Chidubem Gottlob</li>
-                            <li><span class="label label-warning"></span> Dederick Mihail</li>
-                            <li><span class="label label-success"></span> Felice Arseniy</li>
-                            <li><span class="label label-default"></span> Grahame Miodrag</li>
-                            <li><span class="label label-default"></span> Hristofor Sergio</li>
-                            <li><span class="label label-danger"></span> Scottie Maximilian</li>
-                            <li><span class="label label-danger"></span> Sullivan Robert</li>
-                            <li><span class="label label-danger"></span> Thancmar Theophanes</li>
-                            <li><span class="label label-warning"></span> Tullio Luka</li>
-                            <li><span class="label label-success"></span> Walerian Khwaja</li>
-                        </ul>
+                <div class="form-group">
+                    <label for="reciever" class="col-lg-2 control-label">To</label>
+                    <div class="col-lg-10">
+                        <input type="email" [(ngModel)]="reciever" name="reciever" class="form-control" id="reciever" placeholder="Recepient">
                     </div>
                 </div>
-            </div>
-            <!--/.col-->
-            <div class="col-md-9">
-                <div class="panel panel-default">
-                    <div class="panel-body message">
-                        <p class="text-center">New Message</p>
-                        <form class="form-horizontal" role="form">
-                            <div class="form-group">
-                                <label for="to" class="col-sm-1 control-label">To:</label>
-                                <div class="col-sm-11">
-
-                                    <input type="email" class="form-control select2-offscreen" id="to" placeholder="Type email" tabindex="-1">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="cc" class="col-sm-1 control-label">CC:</label>
-                                <div class="col-sm-11">
-
-                                    <input type="email" class="form-control select2-offscreen" id="cc" placeholder="Type email" tabindex="-1">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="bcc" class="col-sm-1 control-label">FROM:</label>
-                                <div class="col-sm-11">
-
-                                    <input type="email" class="form-control select2-offscreen" id="bcc" placeholder="NP130@hw.ac.uk" tabindex="-1">
-                                </div>
-                            </div>
-                        </form>
-                        <div class="col-xs-12 col-sm-offset-1">
-                            <div class="btn-toolbar" role="toolbar">
-                                <div class="btn-group">
-                                    <button class="btn btn-default"><span class="fa fa-bold"></span></button>
-                                    <button class="btn btn-default"><span class="fa fa-italic"></span></button>
-                                    <button class="btn btn-default"><span class="fa fa-underline"></span></button>
-                                </div>
-                                <div class="btn-group">
-                                    <button class="btn btn-default"><span class="fa fa-align-left"></span></button>
-                                    <button class="btn btn-default"><span class="fa fa-align-right"></span></button>
-                                    <button class="btn btn-default"><span class="fa fa-align-center"></span></button>
-                                    <button class="btn btn-default"><span class="fa fa-align-justify"></span></button>
-                                </div>
-                                <div class="btn-group">
-                                    <button class="btn btn-default"><span class="fa fa-list-ul"></span></button>
-                                    <button class="btn btn-default"><span class="fa fa-list-ol"></span></button>
-                                </div>
-                                <button class="btn btn-default"><span class="fa fa-trash-o"></span></button>
-                                <button class="btn btn-default"><span class="fa fa-paperclip"></span></button>
-                                <div class="btn-group">
-                                    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="fa fa-tags"></span> <span class="caret"></span></button>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="page-inbox-compose.html#">add label <span class="label label-danger"> Home</span></a></li>
-                                        <li><a href="page-inbox-compose.html#">add label <span class="label label-info">Job</span></a></li>
-                                        <li><a href="page-inbox-compose.html#">add label <span class="label label-success">Clients</span></a></li>
-                                        <li><a href="page-inbox-compose.html#">add label <span class="label label-warning">News</span></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="form-group">
-                                <textarea class="col-md-11 form-control" id="message" name="body" rows="12" placeholder="Click here to reply" style=" width: 710px"></textarea>
-                            </div>
-                            <br style="padding-top: 20px">
-                            <div class="form-group">
-
-                                <button type="submit" class="btn btn-success">Send</button>
-                                <button type="submit" class="btn btn-default">Draft</button>
-                                <button type="submit" class="btn btn-danger">Discard</button>
-                            </div>
+                <div class="form-group">
+                    <label for="ccEmail" class="col-lg-2 control-label">CC</label>
+                    <div class="col-lg-10">
+                        <input type="email" class="form-control" [(ngModel)]="ccEmail" name="ccEmail" id="ccEmail" placeholder="Email id">
+                        <div class="checkbox">
+                            <label>
+            <input [(ngModel)]="important" name="important" type="checkbox"> Important
+          </label>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+                <div class="form-group">
+                    <label for="subject" class="col-lg-2 control-label">Subject</label>
+                    <div class="col-lg-10">
+                        <input type="text" [(ngModel)]="subject" name="subject" class="form-control" id="subject" placeholder="Subject">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="message" class="col-lg-2 control-label">Message</label>
+                    <div class="col-lg-10">
+                        <textarea [(ngModel)]="message" name="message" class="form-control" rows="3" id="message"></textarea>
+                        <!--<span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>-->
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+                        <button (click)="onSend()" class="btn btn-success">Send</button>
+                        <button (click)="onSave()" class="btn btn-primary">Save</button>
+                        <button type="reset" class="btn btn-default">Discard</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
     </div>
 </div>

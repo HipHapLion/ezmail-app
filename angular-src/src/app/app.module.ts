@@ -18,9 +18,11 @@ import { UserAccountComponent } from './components/user-account/user-account.com
 
 import { ValidateService } from './services/validate.service';
 import { AuthService } from "./services/auth.service";
+import {EmailService} from "./services/email.service";
 
 import { AuthGuard } from './guards/auth.guard';
 import { OverviewComponent } from './components/overview/overview.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 // import 
 
@@ -48,7 +50,8 @@ const appRoutes: Routes = [
     ComposeComponent,
     UserAccountComponent,
     DashboardComponent,
-    OverviewComponent
+    OverviewComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FlashMessagesModule
   ],
-  providers: [ValidateService, AuthService, AuthGuard],
+  providers: [ValidateService, AuthService, AuthGuard, EmailService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

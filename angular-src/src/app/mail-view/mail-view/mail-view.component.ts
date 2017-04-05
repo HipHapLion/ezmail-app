@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {EmailService} from "../../services/email.service";
 
 @Component({
   selector: 'app-mail-view',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MailViewComponent implements OnInit {
 
-  constructor() { }
+  list: any;
+
+  constructor(
+    private emailService: EmailService
+  ) { }
 
   ngOnInit() {
+    this.emailService.getEmails().subscribe(data => {
+      this.list = data;
+      // console.log(this.list);
+    });
   }
 
 }

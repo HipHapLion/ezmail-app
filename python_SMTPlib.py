@@ -87,4 +87,3 @@ def smtpSession(sender, rcpt, subject, msg, emailService, port, username, passwo
     print(response6)
 
     smtpSocket.close()
-

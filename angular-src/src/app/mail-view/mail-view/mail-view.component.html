@@ -1,39 +1,5 @@
-<app-sidebar></app-sidebar>
-<div class="row">
-  <div class="col-lg-10 mailList">
-    <div class="card">
-      <div class="container">
-        <h4>
-          <b>Subject: Demo timings.</b>
-        </h4>
-        <h6>From: Talal Sheikh</h6>
-        <hr>
-      </div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor explicabo quam deserunt beatae, quaerat. Atque expedita
-        totam voluptate alias repudiandae optio explicabo quia soluta distinctio laborum, velit odio quasi, laboriosam.</p>
-    </div>
-
-    <div class="card">
-      <div class="container">
-        <h4>
-          Subject: Project Update
-        </h4>
-        <h6>From: Roshan Sureen</h6>
-        <hr>
-      </div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor explicabo quam deserunt beatae, quaerat. Atque expedita
-        totam voluptate alias repudiandae optio explicabo quia soluta distinctio laborum, velit odio quasi, laboriosam.</p>
-    </div>
-
-    <div class="card" >
-        <div class="container">
-          <h4>Subject: Demo timings.</h4>
-          <h6>From: Talal Sheikh</h6>
-          <hr>
-        </div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor explicabo quam deserunt beatae, quaerat.
-             Atque expedita totam voluptate alias repudiandae optio explicabo quia soluta distinctio laborum,
-              velit odio quasi, laboriosam.</p>
-      </div>
-  </div>
+<div class="container-fluid">
+  <ul>
+    <li *ngFor="let item of list">{{item}}</li>
+  </ul>
 </div>

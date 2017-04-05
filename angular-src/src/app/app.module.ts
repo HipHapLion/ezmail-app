@@ -12,7 +12,6 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { MailViewComponent } from './mail-view/mail-view/mail-view.component';
-import { SidebarComponent } from './mail-view/sidebar/sidebar.component';
 import { ComposeComponent } from "./compose/compose-component/compose.component";
 import { UserAccountComponent } from './components/user-account/user-account.component';
 
@@ -45,7 +44,6 @@ const appRoutes: Routes = [
     RegisterComponent,
     HomeComponent,
     MailViewComponent,
-    SidebarComponent,
     DashboardComponent,
     ComposeComponent,
     UserAccountComponent,

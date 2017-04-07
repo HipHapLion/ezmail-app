@@ -28,26 +28,26 @@ var EmailService = (function () {
     EmailService.prototype.sendEmail = function (email) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Tpye', 'application/json');
-        return this.http.post('http://localhost:3000/emails/send', email, { headers: headers }).map(function (res) { return res.json(); });
-        // return this.http.post('/emails/send', email, {head  ers: headers}).map(res => res.json());
+        // return this.http.post('http://localhost:3000/emails/send', email, { headers: headers }).map(res => res.json());
+        return this.http.post('/emails/send', email, { headers: headers }).map(function (res) { return res.json(); });
     };
     EmailService.prototype.getEmails = function (account) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Tpye', 'application/json');
-        return this.http.post('http://localhost:3000/emails/list', account, { headers: headers }).map(function (res) { return res.json(); });
-        // return this.http.post('/emails/list', account, {head  ers: headers}).map(res => res.json());
+        // return this.http.post('http://localhost:3000/emails/list', account, { headers: headers }).map(res => res.json());
+        return this.http.post('/emails/list', account, { headers: headers }).map(function (res) { return res.json(); });
     };
     EmailService.prototype.getContent = function (info) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Tpye', 'application/json');
-        return this.http.post('http://localhost:3000/emails/read', info, { headers: headers }).map(function (res) { return res.json(); });
-        // return this.http.post('/emails/read', info, {head  ers: headers}).map(res => res.json());
+        // return this.http.post('http://localhost:3000/emails/read', info, { headers: headers }).map(res => res.json());
+        return this.http.post('/emails/read', info, { headers: headers }).map(function (res) { return res.json(); });
     };
     EmailService.prototype.deleteMail = function (info) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Tpye', 'application/json');
-        return this.http.post('http://localhost:3000/emails/delete', info, { headers: headers }).map(function (res) { return res.json(); });
-        // return this.http.post('/emails/delete', info, {head  ers: headers}).map(res => res.json());
+        // return this.http.post('http://localhost:3000/emails/delete', info, { headers: headers }).map(res => res.json());
+        return this.http.post('/emails/delete', info, { headers: headers }).map(function (res) { return res.json(); });
     };
     EmailService = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(), 
@@ -140,22 +140,22 @@ var AuthService = (function () {
     AuthService.prototype.registerUser = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Tpye', 'application/json');
-        return this.http.post('http://localhost:3000/users/register', user, { headers: headers }).map(function (res) { return res.json(); });
-        // return this.http.post('/users/register', user, {headers: headers}).map(res => res.json());
+        // return this.http.post('http://localhost:3000/users/register', user, { headers: headers }).map(res => res.json());
+        return this.http.post('/users/register', user, { headers: headers }).map(function (res) { return res.json(); });
     };
     AuthService.prototype.authenticateUser = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Tpye', 'application/json');
-        return this.http.post('http://localhost:3000/users/authenticate', user, { headers: headers }).map(function (res) { return res.json(); });
-        // return this.http.post('/users/authenticate', user, {headers: headers}).map(res => res.json());
+        // return this.http.post('http://localhost:3000/users/authenticate', user, { headers: headers }).map(res => res.json());
+        return this.http.post('/users/authenticate', user, { headers: headers }).map(function (res) { return res.json(); });
     };
     AuthService.prototype.getProfile = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         this.loadToken();
         headers.append('Authorization', this.authToken);
         headers.append('Content-Tpye', 'application/json');
-        return this.http.get('http://localhost:3000/users/profile', { headers: headers }).map(function (res) { return res.json(); });
-        // return this.http.get('/users/profile', {headers: headers}).map(res => res.json());
+        // return this.http.get('http://localhost:3000/users/profile', { headers: headers }).map(res => res.json());
+        return this.http.get('/users/profile', { headers: headers }).map(function (res) { return res.json(); });
     };
     AuthService.prototype.storeUserData = function (token) {
         localStorage.setItem('id_token', token);

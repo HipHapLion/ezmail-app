@@ -1,10 +1,10 @@
 var imapService = "imap.gmail.com";
 var port = 993;
-var username = "iamnethrezim@gmail.com";
-var password = "youdarespeaktome"; //enter your email and password
+var username = "philipz201@gmail.com";
+var password = "7895123z*"; //enter your email and password
 
 const spawn = require('child_process').spawn;
-const scriptExecution = spawn("python.exe", ["node_imap_retrieve_python.py"]);
+const scriptExecution = spawn("python", ["node_imap_retrieve_python.py"]);
 
 // Handle normal output
 scriptExecution.stdout.on('data', function (data){

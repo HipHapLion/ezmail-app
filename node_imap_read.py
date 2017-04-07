@@ -16,7 +16,7 @@ def main():
     password = lines[3]
     mailID = lines[4]
     
-    popSession(service, port, username, password, mailID)
+    imapSession(service, port, username, password, mailID)
 
 # Start process
 if __name__ == '__main__':

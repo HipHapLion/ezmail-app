@@ -50,4 +50,4 @@ def imapSession(popService, port, username, password, mailId):
 
     #imapSocket.send(("tag FETCH 4155 BODY[HEADER]\r\n").encode())
     #print(imapSocket.recv(1024).decode())
-imapSession('imap.gmail.com', 993, 'philipz201@gmail.com', '7895123z*', '1577')
+# imapSession('imap.gmail.com', 993, 'philipz201@gmail.com', '7895123z*', '1577')

@@ -18,10 +18,24 @@ export class EmailService {
     // return this.http.post('/emails/send', email, {head  ers: headers}).map(res => res.json());
   }
 
-  getEmails(){
+  getEmails(account){
     let headers = new Headers();
     headers.append('Content-Tpye', 'application/json');
-    return this.http.post('http://localhost:3000/emails/list', { headers: headers }).map(res => res.json());
-    // return this.http.post('/emails/list', {head  ers: headers}).map(res => res.json());
+    return this.http.post('http://localhost:3000/emails/list', account, { headers: headers }).map(res => res.json());
+    // return this.http.post('/emails/list', account, {head  ers: headers}).map(res => res.json());
+  }
+
+  getContent(info){
+    let headers = new Headers();
+    headers.append('Content-Tpye', 'application/json');
+    return this.http.post('http://localhost:3000/emails/read', info, { headers: headers }).map(res => res.json());
+    // return this.http.post('/emails/read', info, {head  ers: headers}).map(res => res.json());
+  }
+
+  deleteMail(info){
+    let headers = new Headers();
+    headers.append('Content-Tpye', 'application/json');
+    return this.http.post('http://localhost:3000/emails/delete', info, { headers: headers }).map(res => res.json());
+    // return this.http.post('/emails/delete', info, {head  ers: headers}).map(res => res.json());
   }
 }

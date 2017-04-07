@@ -10,12 +10,12 @@ def main():
     #get our data as an array from read_in()
     lines = read_in()
 
-    service = lines[0]
+    PopService = lines[0]
     port = lines[1]
     username = lines[2]
     password = lines[3]
 
-    imapSession(service, port, username, password)
+    imapSession(PopService, port, username, password)
 
 # Start process
 if __name__ == '__main__':

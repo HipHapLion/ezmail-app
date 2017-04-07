@@ -60,7 +60,9 @@ def imapSession(imapService, port, username, password):
     total_data = [item for sublist in total_data for item in sublist]
     total_data = list(filter(None, total_data))  # fastest
     total_data = [s.replace("FETCH (BODY[HEADER.FIELDS (SUBJECT]", '') for s in total_data]
-    del total_data[-1]
+    total_data = [s.replace("Subject:", '/') for s in total_data]
+    total_data = [s + '=%$^' for s in total_data]
+    # del total_data[-1]
     #print(total_data)
     print('\n'.join(total_data))
 #imapSession('imap.gmail.com', 993, 'grgrdavtyan@gmail.com', 'password')

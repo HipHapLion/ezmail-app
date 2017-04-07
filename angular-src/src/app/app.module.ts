@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FlashMessagesModule } from "angular2-flash-messages";
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { DashboardComponent } from './dashboard/dashboard-component/dashboard.component';
 import { AppComponent } from './app.component';
@@ -56,7 +58,9 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
-    FlashMessagesModule
+    FlashMessagesModule,
+    TabsModule.forRoot(),
+    ModalModule.forRoot()
   ],
   providers: [ValidateService, AuthService, AuthGuard, EmailService],
   bootstrap: [AppComponent]

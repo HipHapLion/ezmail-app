@@ -1,0 +1,23 @@
+footer {
+    position: fixed;
+    bottom: 0;
+    // left: 40%;
+    margin-left: 45%;
+}
+.footer-block {
+    ul {
+        margin-left: -30%;
+        padding-left: 0;
+        li {
+            display: inline;
+        }
+    }
+    .spacer {
+        padding: 0 10px;
+
+    }    
+}
+
+// #cp-right{
+//     margin-left: 45%;
+// }

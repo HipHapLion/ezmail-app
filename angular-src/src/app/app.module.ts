@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FlashMessagesModule } from "angular2-flash-messages";
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { DashboardComponent } from './dashboard/dashboard-component/dashboard.component';
 import { AppComponent } from './app.component';
@@ -12,15 +14,16 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { MailViewComponent } from './mail-view/mail-view/mail-view.component';
-import { SidebarComponent } from './mail-view/sidebar/sidebar.component';
 import { ComposeComponent } from "./compose/compose-component/compose.component";
 import { UserAccountComponent } from './components/user-account/user-account.component';
 
 import { ValidateService } from './services/validate.service';
 import { AuthService } from "./services/auth.service";
+import {EmailService} from "./services/email.service";
 
 import { AuthGuard } from './guards/auth.guard';
 import { OverviewComponent } from './components/overview/overview.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 // import 
 
@@ -43,21 +46,23 @@ const appRoutes: Routes = [
     RegisterComponent,
     HomeComponent,
     MailViewComponent,
-    SidebarComponent,
     DashboardComponent,
     ComposeComponent,
     UserAccountComponent,
     DashboardComponent,
-    OverviewComponent
+    OverviewComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
-    FlashMessagesModule
+    FlashMessagesModule,
+    TabsModule.forRoot(),
+    ModalModule.forRoot()
   ],
-  providers: [ValidateService, AuthService, AuthGuard],
+  providers: [ValidateService, AuthService, AuthGuard, EmailService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

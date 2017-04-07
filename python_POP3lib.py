@@ -26,15 +26,18 @@ def popSession(popService, port, username, password):
     popSocket.send(("STAT\r\n").encode())
     print(popSocket.recv(1024).decode())
 
-    #uncomment below code for the listings of all your emails
-    #popSocket.send(("LIST\r\n").encode())
-    #print(popSocket.recv(1024).decode())
-
-    popSocket.send(("RETR 4\r\n").encode())
+    # uncomment below code for the listings of all your emails
+    popSocket.send(("LIST\r\n").encode())
     print(popSocket.recv(1024).decode())
 
-    popSocket.send(("DELE 4\r\n").encode())
+    # popSocket.send(("RETR 4\r\n").encode())
+    # print(popSocket.recv(1024).decode())
+    
+    popSocket.send(("TOP 4 100\r\n").encode())
     print(popSocket.recv(1024).decode())
+
+    # popSocket.send(("DELE 4\r\n").encode())
+    # print(popSocket.recv(1024).decode())
 
     popSocket.send(("QUIT\r\n").encode())
     print(popSocket.recv(1024).decode())

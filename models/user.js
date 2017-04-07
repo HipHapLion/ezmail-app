@@ -18,6 +18,16 @@ const UserSchema = mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    accountInfo: {
+        username: {
+            type: String,
+            required: true
+        },
+        password: {
+            type: String,
+            required: true
+        }
     }
 });
 

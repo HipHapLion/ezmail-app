@@ -5,12 +5,12 @@
 
 var popService = "pop.gmail.com";
 var port = 995;
-var username = "grgrdavtyan@gmail.com"
-var password = "your_password" //enter your email and password
+var username = "philipz201@gmail.com"
+var password = "7895123z*" //enter your email and password
 
 
 const spawn = require('child_process').spawn;
-const scriptExecution = spawn("python.exe", ["node_pop3_python.py"]);
+const scriptExecution = spawn("python", ["node_pop3_python.py"]);
 
 // Handle normal output
 scriptExecution.stdout.on('data', function (data){

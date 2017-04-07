@@ -1,39 +1,34 @@
-<app-sidebar></app-sidebar>
-<div class="row">
-  <div class="col-lg-10 mailList">
-    <div class="card">
+<div class="container-fluid">
+  <!--<ul>
+    <li *ngFor="let item of list">{{item}}</li>
+  </ul>-->
+  <!--<div *ngIf="user">-->
+    <div class="card email" *ngFor="let item of emails">
       <div class="container">
-        <h4>
-          <b>Subject: Demo timings.</b>
-        </h4>
-        <h6>From: Talal Sheikh</h6>
-        <hr>
-      </div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor explicabo quam deserunt beatae, quaerat. Atque expedita
-        totam voluptate alias repudiandae optio explicabo quia soluta distinctio laborum, velit odio quasi, laboriosam.</p>
-    </div>
-
-    <div class="card">
-      <div class="container">
-        <h4>
-          Subject: Project Update
-        </h4>
-        <h6>From: Roshan Sureen</h6>
-        <hr>
-      </div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor explicabo quam deserunt beatae, quaerat. Atque expedita
-        totam voluptate alias repudiandae optio explicabo quia soluta distinctio laborum, velit odio quasi, laboriosam.</p>
-    </div>
-
-    <div class="card" >
-        <div class="container">
-          <h4>Subject: Demo timings.</h4>
-          <h6>From: Talal Sheikh</h6>
-          <hr>
+        <p>
+          <b>{{item.sub}}</b>
+        </p>
+        <div class="pull-right">
+          <button class="btn btn-primary" (click)="onView(item.id); showChildModal()">View</button>
+          <button class="btn btn-danger" (click)="onDelete(item.id)">Delete</button>
         </div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor explicabo quam deserunt beatae, quaerat.
-             Atque expedita totam voluptate alias repudiandae optio explicabo quia soluta distinctio laborum,
-              velit odio quasi, laboriosam.</p>
       </div>
+    </div>
+  <!--</div>-->
+
+  <div bsModal #childModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">Content</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="hideChildModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+          {{content}}
+        </div>
+      </div>
+    </div>
   </div>
 </div>

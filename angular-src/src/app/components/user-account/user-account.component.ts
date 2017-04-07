@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { TabsetComponent } from 'ngx-bootstrap';
 
 @Component({
   moduleId: module.id,
@@ -10,7 +11,11 @@ import { Router } from '@angular/router';
 })
 export class UserAccountComponent implements OnInit {
 
+  @ViewChild('staticTabs') staticTabs: TabsetComponent;
+
+
   user: Object;
+  // account: Object;
 
   constructor(
     private router: Router,

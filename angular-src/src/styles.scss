@@ -1,8 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-@import "sass/variables_cosmo";
+@import "sass/variables_readable";
 $icon-font-path: '../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
 @import "../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
-@import "sass/bootswatch_cosmo";
+@import "sass/bootswatch_readable";
 @import "../node_modules/bootstrap-sass/assets/stylesheets/bootstrap-compass";
 $fa-font-path: "fonts/";
 @import "../node_modules/font-awesome/scss/font-awesome";
@@ -15,4 +15,8 @@ $fa-font-path: "fonts/";
     padding-top: 250px;
     text-align: center;
     // background-color: lightgrey;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
 }

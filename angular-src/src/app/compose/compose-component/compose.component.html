@@ -2,7 +2,7 @@
     <div class="well">
         <form class="form-horizontal">
             <fieldset>
-                <legend>Legend</legend>
+                <legend>New Email</legend>
                 <div class="form-group">
                     <label for="account" class="col-lg-2 control-label">From</label>
                     <div class="col-lg-10">
@@ -16,17 +16,6 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="ccEmail" class="col-lg-2 control-label">CC</label>
-                    <div class="col-lg-10">
-                        <input type="email" class="form-control" [(ngModel)]="ccEmail" name="ccEmail" id="ccEmail" placeholder="Email id">
-                        <div class="checkbox">
-                            <label>
-            <input [(ngModel)]="important" name="important" type="checkbox"> Important
-          </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
                     <label for="subject" class="col-lg-2 control-label">Subject</label>
                     <div class="col-lg-10">
                         <input type="text" [(ngModel)]="subject" name="subject" class="form-control" id="subject" placeholder="Subject">
@@ -36,7 +25,6 @@
                     <label for="message" class="col-lg-2 control-label">Message</label>
                     <div class="col-lg-10">
                         <textarea [(ngModel)]="message" name="message" class="form-control" rows="3" id="message"></textarea>
-                        <!--<span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>-->
                     </div>
                 </div>
                 <div class="form-group">

@@ -1,6 +1,6 @@
 webpackJsonp([1,4],{
 
-/***/ 209:
+/***/ 141:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -24,30 +24,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var EmailService = (function () {
     function EmailService(http) {
         this.http = http;
+        this.currentAccount = 0;
     }
+    EmailService.prototype.setAccount = function (val) {
+        this.currentAccount = val;
+    };
+    EmailService.prototype.getAccount = function () {
+        return this.currentAccount;
+    };
     EmailService.prototype.sendEmail = function (email) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Tpye', 'application/json');
-        // return this.http.post('http://localhost:3000/emails/send', email, { headers: headers }).map(res => res.json());
-        return this.http.post('/emails/send', email, { headers: headers }).map(function (res) { return res.json(); });
+        return this.http.post('http://localhost:3000/emails/send', email, { headers: headers }).map(function (res) { return res.json(); });
+        // return this.http.post('/emails/send', email, { headers: headers }).map(res => res.json());
     };
     EmailService.prototype.getEmails = function (account) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Tpye', 'application/json');
-        // return this.http.post('http://localhost:3000/emails/list', account, { headers: headers }).map(res => res.json());
-        return this.http.post('/emails/list', account, { headers: headers }).map(function (res) { return res.json(); });
+        return this.http.post('http://localhost:3000/emails/list', account, { headers: headers }).map(function (res) { return res.json(); });
+        // return this.http.post('/emails/list', account, { headers: headers }).map(res => res.json());
     };
     EmailService.prototype.getContent = function (info) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Tpye', 'application/json');
-        // return this.http.post('http://localhost:3000/emails/read', info, { headers: headers }).map(res => res.json());
-        return this.http.post('/emails/read', info, { headers: headers }).map(function (res) { return res.json(); });
+        return this.http.post('http://localhost:3000/emails/read', info, { headers: headers }).map(function (res) { return res.json(); });
+        // return this.http.post('/emails/read', info, { headers: headers }).map(res => res.json());
     };
     EmailService.prototype.deleteMail = function (info) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Tpye', 'application/json');
-        // return this.http.post('http://localhost:3000/emails/delete', info, { headers: headers }).map(res => res.json());
-        return this.http.post('/emails/delete', info, { headers: headers }).map(function (res) { return res.json(); });
+        return this.http.post('http://localhost:3000/emails/delete', info, { headers: headers }).map(function (res) { return res.json(); });
+        // return this.http.post('/emails/delete', info, { headers: headers }).map(res => res.json());
     };
     EmailService = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(), 
@@ -88,7 +95,7 @@ var ValidateService = (function () {
         }
     };
     ValidateService.prototype.validateCompose = function (email) {
-        if (email.sender == undefined || email.recipient == undefined || email.message == undefined || email.sub == undefined) {
+        if (email.sender == undefined || email.recpt == undefined || email.message == undefined || email.sub == undefined) {
             return false;
         }
         else {
@@ -109,7 +116,7 @@ var ValidateService = (function () {
 
 /***/ }),
 
-/***/ 48:
+/***/ 36:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -140,22 +147,28 @@ var AuthService = (function () {
     AuthService.prototype.registerUser = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Tpye', 'application/json');
-        // return this.http.post('http://localhost:3000/users/register', user, { headers: headers }).map(res => res.json());
-        return this.http.post('/users/register', user, { headers: headers }).map(function (res) { return res.json(); });
+        return this.http.post('http://localhost:3000/users/register', user, { headers: headers }).map(function (res) { return res.json(); });
+        // return this.http.post('/users/register', user, { headers: headers }).map(res => res.json());
+    };
+    AuthService.prototype.addAccount = function (account) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Tpye', 'application/json');
+        return this.http.post('http://localhost:3000/users/addAccount', account, { headers: headers }).map(function (res) { return res.json(); });
+        // return this.http.post('/users/addAccount', user, { headers: headers }).map(res => res.json());
     };
     AuthService.prototype.authenticateUser = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Tpye', 'application/json');
-        // return this.http.post('http://localhost:3000/users/authenticate', user, { headers: headers }).map(res => res.json());
-        return this.http.post('/users/authenticate', user, { headers: headers }).map(function (res) { return res.json(); });
+        return this.http.post('http://localhost:3000/users/authenticate', user, { headers: headers }).map(function (res) { return res.json(); });
+        // return this.http.post('/users/authenticate', user, { headers: headers }).map(res => res.json());
     };
     AuthService.prototype.getProfile = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         this.loadToken();
         headers.append('Authorization', this.authToken);
         headers.append('Content-Tpye', 'application/json');
-        // return this.http.get('http://localhost:3000/users/profile', { headers: headers }).map(res => res.json());
-        return this.http.get('/users/profile', { headers: headers }).map(function (res) { return res.json(); });
+        return this.http.get('http://localhost:3000/users/profile', { headers: headers }).map(function (res) { return res.json(); });
+        // return this.http.get('/users/profile', { headers: headers }).map(res => res.json());
     };
     AuthService.prototype.storeUserData = function (token) {
         localStorage.setItem('id_token', token);
@@ -261,11 +274,11 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(134);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_flash_messages__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_angular2_flash_messages__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ngx_bootstrap_tabs__ = __webpack_require__(509);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ngx_bootstrap_modal__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ngx_bootstrap_modal__ = __webpack_require__(147);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dashboard_dashboard_component_dashboard_component__ = __webpack_require__(671);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_component__ = __webpack_require__(661);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_navbar_navbar_component__ = __webpack_require__(666);
@@ -276,8 +289,8 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__compose_compose_component_compose_component__ = __webpack_require__(670);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_user_account_user_account_component__ = __webpack_require__(669);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__services_validate_service__ = __webpack_require__(210);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__services_auth_service__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__services_email_service__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__services_auth_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__services_email_service__ = __webpack_require__(141);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__guards_auth_guard__ = __webpack_require__(672);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_overview_overview_component__ = __webpack_require__(667);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_footer_footer_component__ = __webpack_require__(663);
@@ -439,8 +452,8 @@ var HomeComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginComponent; });
@@ -503,8 +516,8 @@ var LoginComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NavbarComponent; });
@@ -593,8 +606,8 @@ var OverviewComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_validate_service__ = __webpack_require__(210);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_auth_service__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_auth_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(34);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegisterComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -669,8 +682,8 @@ var RegisterComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ngx_bootstrap__ = __webpack_require__(756);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserAccountComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -728,7 +741,9 @@ var UserAccountComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_validate_service__ = __webpack_require__(210);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_email_service__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_email_service__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_auth_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__(34);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ComposeComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -743,19 +758,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var ComposeComponent = (function () {
-    function ComposeComponent(flashMessage, validateService, emailService) {
+    function ComposeComponent(authService, router, flashMessage, validateService, emailService) {
+        this.authService = authService;
+        this.router = router;
         this.flashMessage = flashMessage;
         this.validateService = validateService;
         this.emailService = emailService;
     }
     ComposeComponent.prototype.ngOnInit = function () {
-        this.important = false;
+        this.message = undefined;
     };
     ComposeComponent.prototype.onSend = function () {
-        if (this.ccEmail == "") {
-            this.ccEmail = undefined;
-        }
+        var _this = this;
         if (this.account == "") {
             this.account = undefined;
         }
@@ -768,28 +785,34 @@ var ComposeComponent = (function () {
         if (this.message == "") {
             this.message = undefined;
         }
-        var email = {
-            sender: this.account,
-            recipient: this.reciever,
-            CC: this.ccEmail,
-            sub: this.subject,
-            message: this.message,
-            imp: this.important
-        };
-        if (!this.validateService.validateCompose(email)) {
-            this.flashMessage.show("Please fill in all fields.", { cssClass: "alert-danger", timeout: 3000 });
-            return false;
-        }
-        if (!this.validateService.validateEmail(email.sender) || !this.validateService.validateEmail(email.recipient) && email.CC == undefined) {
-            this.flashMessage.show("Please enter a valid email.", { cssClass: "alert-danger", timeout: 3000 });
-            return false;
-        }
-        if (this.ccEmail != undefined && !this.validateService.validateEmail(email.CC)) {
-            this.flashMessage.show("Please enter a valid email.", { cssClass: "alert-danger", timeout: 3000 });
-            return false;
-        }
-        this.emailService.sendEmail(email).subscribe(function (data) {
-            console.log(data);
+        this.authService.getProfile().subscribe(function (profile) {
+            var account = profile.user;
+            _this.userInfo = account.accountInfo[0];
+            if (_this.userInfo == undefined) {
+                _this.flashMessage.show("Add an account", { cssClass: "alert-danger", timeout: 3000 });
+                _this.router.navigate(['/login']);
+            }
+            else {
+                var email = {
+                    sender: _this.userInfo.username,
+                    recpt: _this.reciever,
+                    password: _this.userInfo.password,
+                    sub: _this.subject,
+                    message: _this.message
+                };
+                if (!_this.validateService.validateCompose(email)) {
+                    _this.flashMessage.show("Please fill in all fields.", { cssClass: "alert-danger", timeout: 3000 });
+                    return false;
+                }
+                if (!_this.validateService.validateEmail(email.sender) || !_this.validateService.validateEmail(email.recpt)) {
+                    _this.flashMessage.show("Please enter a valid email.", { cssClass: "alert-danger", timeout: 3000 });
+                    return false;
+                }
+                _this.emailService.sendEmail(email).subscribe(function (data) {
+                    console.log(data);
+                });
+                window.location.reload();
+            }
         });
     };
     ComposeComponent.prototype.onSave = function () {
@@ -801,10 +824,10 @@ var ComposeComponent = (function () {
             template: __webpack_require__(778),
             styles: [__webpack_require__(741)]
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__["FlashMessagesService"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__["FlashMessagesService"]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__services_validate_service__["a" /* ValidateService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_validate_service__["a" /* ValidateService */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_email_service__["a" /* EmailService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__services_email_service__["a" /* EmailService */]) === 'function' && _c) || Object])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4__services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4__services_auth_service__["a" /* AuthService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_5__angular_router__["b" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__angular_router__["b" /* Router */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__["FlashMessagesService"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__["FlashMessagesService"]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__services_validate_service__["a" /* ValidateService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_validate_service__["a" /* ValidateService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__services_email_service__["a" /* EmailService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__services_email_service__["a" /* EmailService */]) === 'function' && _e) || Object])
     ], ComposeComponent);
     return ComposeComponent;
-    var _a, _b, _c;
+    var _a, _b, _c, _d, _e;
 }());
 //# sourceMappingURL=/Users/hap_hip_lion/Documents/code/ezmail-app/angular-src/src/compose.component.js.map
 
@@ -815,11 +838,12 @@ var ComposeComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ngx_bootstrap_modal__ = __webpack_require__(146);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ngx_bootstrap_modal__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_flash_messages__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_angular2_flash_messages__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_email_service__ = __webpack_require__(141);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DashboardComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -835,13 +859,51 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var DashboardComponent = (function () {
-    function DashboardComponent(router, flashMessages, authService) {
+    function DashboardComponent(router, flashMessages, authService, emailService) {
         this.router = router;
         this.flashMessages = flashMessages;
         this.authService = authService;
+        this.emailService = emailService;
     }
     DashboardComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.authService.getProfile().subscribe(function (profile) {
+            _this.accounts = profile.user.accountInfo;
+        });
+    };
+    DashboardComponent.prototype.onSave = function () {
+        var _this = this;
+        this.hideChildModal();
+        this.authService.getProfile().subscribe(function (profile) {
+            var list = profile.user.accountInfo;
+            list.push({
+                name: _this.name,
+                username: _this.username,
+                password: _this.password
+            });
+            var account = {
+                username: profile.user.username,
+                accounts: list
+            };
+            _this.authService.addAccount(account).subscribe(function (res) {
+                // console.log(res);
+                if (res.success) {
+                    _this.flashMessages.show(res.msg, { cssClass: "alert-success", timeout: 3000 });
+                }
+                else {
+                    _this.flashMessages.show(res.msg, { cssClass: "alert-danger", timeout: 3000 });
+                }
+            });
+        });
+    };
+    DashboardComponent.prototype.gotoMail = function (val) {
+        this.emailService.setAccount(val);
+        this.router.navigate(['/mail-view']);
+    };
+    DashboardComponent.prototype.print = function (val) {
+        console.log(val);
     };
     DashboardComponent.prototype.showChildModal = function () {
         this.childModal.show();
@@ -859,10 +921,10 @@ var DashboardComponent = (function () {
             template: __webpack_require__(779),
             styles: [__webpack_require__(742)]
         }), 
-        __metadata('design:paramtypes', [(typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* Router */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4_angular2_flash_messages__["FlashMessagesService"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4_angular2_flash_messages__["FlashMessagesService"]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */]) === 'function' && _d) || Object])
+        __metadata('design:paramtypes', [(typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* Router */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* Router */]) === 'function' && _b) || Object, (typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4_angular2_flash_messages__["FlashMessagesService"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_4_angular2_flash_messages__["FlashMessagesService"]) === 'function' && _c) || Object, (typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */]) === 'function' && _d) || Object, (typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__services_email_service__["a" /* EmailService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_5__services_email_service__["a" /* EmailService */]) === 'function' && _e) || Object])
     ], DashboardComponent);
     return DashboardComponent;
-    var _a, _b, _c, _d;
+    var _a, _b, _c, _d, _e;
 }());
 //# sourceMappingURL=/Users/hap_hip_lion/Documents/code/ezmail-app/angular-src/src/dashboard.component.js.map
 
@@ -873,8 +935,8 @@ var DashboardComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(36);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthGuard; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -918,10 +980,10 @@ var AuthGuard = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_email_service__ = __webpack_require__(209);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ngx_bootstrap_modal__ = __webpack_require__(146);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_email_service__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ngx_bootstrap_modal__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_flash_messages__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_angular2_flash_messages__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MailViewComponent; });
@@ -951,13 +1013,13 @@ var MailViewComponent = (function () {
     MailViewComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.authService.getProfile().subscribe(function (profile) {
-            var account = profile.user;
-            _this.account = account.accountInfo;
-            if (_this.account == undefined) {
+            var accList = profile.user.accountInfo;
+            if (accList == undefined) {
                 _this.flashMessages.show("Add an account", { cssClass: "alert-danger", timeout: 3000 });
                 _this.router.navigate(['/login']);
             }
             else {
+                _this.account = accList[_this.emailService.getAccount()];
                 _this.emailService.getEmails(_this.account).subscribe(function (data) {
                     var emails = data.toString().split('=%$^');
                     for (var i = 0; i < emails.length; i++) {
@@ -1203,7 +1265,7 @@ exports = module.exports = __webpack_require__(16)();
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".card {\n  padding: 5px 5px; }\n", ""]);
 
 // exports
 
@@ -1544,14 +1606,14 @@ module.exports = "<div class=\"container\">\n  <tabset #staticTabs>\n    <tab he
 /***/ 778:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n    <div class=\"well\">\n        <form class=\"form-horizontal\">\n            <fieldset>\n                <legend>Legend</legend>\n                <div class=\"form-group\">\n                    <label for=\"account\" class=\"col-lg-2 control-label\">From</label>\n                    <div class=\"col-lg-10\">\n                        <input type=\"account\" [(ngModel)]=\"account\" name=\"account\" class=\"form-control\" id=\"account\" placeholder=\"Sender\">\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"reciever\" class=\"col-lg-2 control-label\">To</label>\n                    <div class=\"col-lg-10\">\n                        <input type=\"email\" [(ngModel)]=\"reciever\" name=\"reciever\" class=\"form-control\" id=\"reciever\" placeholder=\"Recepient\">\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"ccEmail\" class=\"col-lg-2 control-label\">CC</label>\n                    <div class=\"col-lg-10\">\n                        <input type=\"email\" class=\"form-control\" [(ngModel)]=\"ccEmail\" name=\"ccEmail\" id=\"ccEmail\" placeholder=\"Email id\">\n                        <div class=\"checkbox\">\n                            <label>\n            <input [(ngModel)]=\"important\" name=\"important\" type=\"checkbox\"> Important\n          </label>\n                        </div>\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"subject\" class=\"col-lg-2 control-label\">Subject</label>\n                    <div class=\"col-lg-10\">\n                        <input type=\"text\" [(ngModel)]=\"subject\" name=\"subject\" class=\"form-control\" id=\"subject\" placeholder=\"Subject\">\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"message\" class=\"col-lg-2 control-label\">Message</label>\n                    <div class=\"col-lg-10\">\n                        <textarea [(ngModel)]=\"message\" name=\"message\" class=\"form-control\" rows=\"3\" id=\"message\"></textarea>\n                        <!--<span class=\"help-block\">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>-->\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <div class=\"col-lg-10 col-lg-offset-2\">\n                        <button (click)=\"onSend()\" class=\"btn btn-success\">Send</button>\n                        <button (click)=\"onSave()\" class=\"btn btn-primary\">Save</button>\n                        <button type=\"reset\" class=\"btn btn-default\">Discard</button>\n                    </div>\n                </div>\n            </fieldset>\n        </form>\n    </div>\n</div>"
+module.exports = "<div class=\"container\">\n    <div class=\"well\">\n        <form class=\"form-horizontal\">\n            <fieldset>\n                <legend>New Email</legend>\n                <div class=\"form-group\">\n                    <label for=\"account\" class=\"col-lg-2 control-label\">From</label>\n                    <div class=\"col-lg-10\">\n                        <input type=\"account\" [(ngModel)]=\"account\" name=\"account\" class=\"form-control\" id=\"account\" placeholder=\"Sender\">\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"reciever\" class=\"col-lg-2 control-label\">To</label>\n                    <div class=\"col-lg-10\">\n                        <input type=\"email\" [(ngModel)]=\"reciever\" name=\"reciever\" class=\"form-control\" id=\"reciever\" placeholder=\"Recepient\">\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"subject\" class=\"col-lg-2 control-label\">Subject</label>\n                    <div class=\"col-lg-10\">\n                        <input type=\"text\" [(ngModel)]=\"subject\" name=\"subject\" class=\"form-control\" id=\"subject\" placeholder=\"Subject\">\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"message\" class=\"col-lg-2 control-label\">Message</label>\n                    <div class=\"col-lg-10\">\n                        <textarea [(ngModel)]=\"message\" name=\"message\" class=\"form-control\" rows=\"3\" id=\"message\"></textarea>\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <div class=\"col-lg-10 col-lg-offset-2\">\n                        <button (click)=\"onSend()\" class=\"btn btn-success\">Send</button>\n                        <button (click)=\"onSave()\" class=\"btn btn-primary\">Save</button>\n                        <button type=\"reset\" class=\"btn btn-default\">Discard</button>\n                    </div>\n                </div>\n            </fieldset>\n        </form>\n    </div>\n</div>"
 
 /***/ }),
 
 /***/ 779:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n    <h2 class=\"page-header\"><strong>Dashboard</strong></h2>\n    <div class=\"container\">\n        <div class=\"row\">\n            <div class=\"col-lg-3 col-md-6\">\n                <div class=\"panel panel-danger\">\n                    <div class=\"panel-heading\">\n                        <div class=\"row\">\n                            <div class=\"col-xs-3\">\n                                <i class=\"fa fa-google fa-5x\"></i>\n                            </div>\n                            <div class=\"col-xs-9 text-right\">\n                                <div class=\"huge\">26</div>\n                                <div>New Mails!</div>\n                            </div>\n                        </div>\n                    </div>\n                    <a href=\"#\">\n                        <div class=\"panel-footer\">\n                            <span class=\"pull-left\">Gmail</span>\n                            <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                            <div class=\"clearfix\"></div>\n                        </div>\n                    </a>\n                </div>\n            </div>\n\n            <div class=\"col-lg-3 col-md-6\">\n\n                <div class=\"panel panel-info\">\n                    <div class=\"panel-heading\">\n                        <div class=\"row\">\n                            <div class=\"col-xs-3\">\n                                <i class=\"fa fa-yahoo fa-5x\"></i>\n                            </div>\n                            <div class=\"col-xs-9 text-right\">\n                                <div class=\"huge\">263</div>\n                                <div>New Mails!</div>\n                            </div>\n                        </div>\n                    </div>\n                    <a href=\"#\">\n                        <div class=\"panel-footer\">\n                            <span class=\"pull-left\">Yahoo</span>\n                            <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                            <div class=\"clearfix\"></div>\n                        </div>\n                    </a>\n                </div>\n            </div>\n            <div class=\"col-lg-3 col-md-6\">\n\n                <div class=\"panel panel-primary\">\n                    <div class=\"panel-heading\">\n                        <div class=\"row\">\n                            <div class=\"col-xs-3\">\n                                <i class=\"fa fa-envelope fa-5x\"></i>\n                            </div>\n                            <div class=\"col-xs-9 text-right\">\n                                <div class=\"huge\">2</div>\n                                <div>New Mails!</div>\n                            </div>\n                        </div>\n                    </div>\n                    <a href=\"/mail-view\">\n                        <div class=\"panel-footer\">\n                            <span class=\"pull-left\">Uni Mail</span>\n                            <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                            <div class=\"clearfix\"></div>\n                        </div>\n                    </a>\n                </div>\n            </div>\n            <div class=\"col-lg-3 col-md-6\">\n                <div class=\"col-md-9\">\n                    <div class=\"panel panel-primary\">\n                        <div class=\"panel-heading\">\n                            <div class=\"row\">\n                                <div class=\"text-center\">\n                                    <i class=\"fa fa-plus-square fa-5x \"></i>\n                                </div>\n\n                            </div>\n                        </div>\n                        <a (click)=\"showChildModal()\">\n                            <div class=\"panel-footer\">\n                                <span class=\"pull-left \">Add Email Account</span>\n                                <!--<span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                       -->\n                                <div class=\"clearfix\"></div>\n                            </div>\n                        </a>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n\n\n        <h2 class=\"page-header\">\n            <strong>Group</strong></h2>\n        <div class=\"container\">\n            <div class=\"row\">\n                <div class=\"col-lg-3 col-md-6\">\n                    <div class=\"panel panel-primary\">\n                        <div class=\"panel-heading\">\n                            <div class=\"row\">\n                                <div class=\"col-xs-3\">\n                                    <i class=\"fa fa-users fa-5x\"></i>\n                                </div>\n                                <div class=\"col-xs-9 text-right\">\n                                    <div class=\"huge\">2</div>\n                                    <div>View Group Emails</div>\n                                </div>\n                            </div>\n                        </div>\n                        <a href=\"#\">\n                            <div class=\"panel-footer\">\n                                <span class=\"pull-left\">View Details</span>\n                                <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                                <div class=\"clearfix\"></div>\n                            </div>\n                        </a>\n                    </div>\n                </div>\n                <div class=\"col-lg-3 col-md-6\">\n\n                    <div class=\"panel panel-primary\">\n                        <div class=\"panel-heading\">\n                            <div class=\"row\">\n                                <div class=\"col-xs-3\">\n                                    <i class=\"fa fa-briefcase fa-5x\"></i>\n                                </div>\n                                <div class=\"col-xs-9 text-right\">\n                                    <div class=\"huge\">2</div>\n                                    <div>View Work Emails!</div>\n                                </div>\n                            </div>\n                        </div>\n                        <a href=\"#\">\n                            <div class=\"panel-footer\">\n                                <span class=\"pull-left\">View Details</span>\n                                <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                                <div class=\"clearfix\"></div>\n                            </div>\n                        </a>\n                    </div>\n                </div>\n                <div class=\"col-lg-3 col-md-6\">\n                    <div class=\"col-md-9\">\n                        <div class=\"panel panel-primary\">\n                            <div class=\"panel-heading\">\n                                <div class=\"row\">\n                                    <div class=\"text-center\">\n                                        <i class=\"fa fa-plus-square fa-5x \"></i>\n                                    </div>\n\n                                </div>\n                            </div>\n                            <a href=\"#\">\n                                <div class=\"panel-footer\">\n                                    <span class=\"pull-left \">Add new group</span>\n                                    <!--<span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                       -->\n                                    <div class=\"clearfix\"></div>\n                                </div>\n                            </a>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n    <div bsModal #childModal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"mySmallModalLabel\" aria-hidden=\"true\">\n    <div class=\"modal-dialog modal-lg\">\n      <div class=\"modal-content\">\n        <div class=\"modal-header\">\n          <h4 class=\"modal-title pull-left\">Add Account</h4>\n          <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"hideChildModal()\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n        </div>\n        <div class=\"modal-body\">\n            A modal!\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
+module.exports = "<div class=\"container\">\n    <h2 class=\"page-header\"><strong>Dashboard</strong></h2>\n    <!--<div class=\"container\">\n        <div class=\"row\">\n            <div class=\"col-lg-3 col-md-6\">\n                <div class=\"panel panel-danger\">\n                    <div class=\"panel-heading\">\n                        <div class=\"row\">\n                            <div class=\"col-xs-3\">\n                                <i class=\"fa fa-google fa-5x\"></i>\n                            </div>\n                            <div class=\"col-xs-9 text-right\">\n                                <div class=\"huge\">26</div>\n                                <div>New Mails!</div>\n                            </div>\n                        </div>\n                    </div>\n                    <a href=\"#\">\n                        <div class=\"panel-footer\">\n                            <span class=\"pull-left\">Gmail</span>\n                            <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                            <div class=\"clearfix\"></div>\n                        </div>\n                    </a>\n                </div>\n            </div>\n\n            <div class=\"col-lg-3 col-md-6\">\n\n                <div class=\"panel panel-info\">\n                    <div class=\"panel-heading\">\n                        <div class=\"row\">\n                            <div class=\"col-xs-3\">\n                                <i class=\"fa fa-yahoo fa-5x\"></i>\n                            </div>\n                            <div class=\"col-xs-9 text-right\">\n                                <div class=\"huge\">263</div>\n                                <div>New Mails!</div>\n                            </div>\n                        </div>\n                    </div>\n                    <a href=\"#\">\n                        <div class=\"panel-footer\">\n                            <span class=\"pull-left\">Yahoo</span>\n                            <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                            <div class=\"clearfix\"></div>\n                        </div>\n                    </a>\n                </div>\n            </div>\n            <div class=\"col-lg-3 col-md-6\">\n\n                <div class=\"panel panel-primary\">\n                    <div class=\"panel-heading\">\n                        <div class=\"row\">\n                            <div class=\"col-xs-3\">\n                                <i class=\"fa fa-envelope fa-5x\"></i>\n                            </div>\n                            <div class=\"col-xs-9 text-right\">\n                                <div class=\"huge\">2</div>\n                                <div>New Mails!</div>\n                            </div>\n                        </div>\n                    </div>\n                    <a (click)=\"gotoMail(0)\">\n                        <div class=\"panel-footer\">\n                            <span class=\"pull-left\">Uni Mail</span>\n                            <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                            <div class=\"clearfix\"></div>\n                        </div>\n                    </a>\n                </div>\n            </div>\n            <div class=\"col-lg-3 col-md-6\">\n                <div class=\"col-md-9\">\n                    <div class=\"panel panel-primary\">\n                        <div class=\"panel-heading\">\n                            <div class=\"row\">\n                                <div class=\"text-center\">\n                                    <i class=\"fa fa-plus-square fa-5x \"></i>\n                                </div>\n\n                            </div>\n                        </div>\n                        <a (click)=\"showChildModal()\">\n                            <div class=\"panel-footer\">\n                                <span class=\"pull-left \">Add Email Account</span>\n                                <div class=\"clearfix\"></div>\n                            </div>\n                        </a>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n    </div>-->\n\n    <div *ngFor=\"let account of accounts; let i = index;\">\n        <!--<div class=\"row\">-->\n            <div class=\"col-md-3\">\n                <div class=\"card\">\n                    <div class=\"container\">\n                        <h6>{{account.name}}</h6>\n                        <button class=\"btn btn-primary\" (click)=\"gotoMail(i)\">View Mailbox</button>\n                    </div>\n                </div>\n            </div>\n        <!--</div>-->\n    </div>\n    <div class=\"col-md-3\">\n        <div class=\"card\">\n            <div class=\"container\">\n                <button class=\"btn btn-success\" (click)=\"showChildModal()\">Add Account</button>\n            </div>\n        </div>\n    </div>\n\n    <!-- Add account modal -->\n    <div bsModal #childModal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"mySmallModalLabel\" aria-hidden=\"true\">\n        <div class=\"modal-dialog modal-lg\">\n            <div class=\"modal-content\">\n                <div class=\"modal-header\">\n                    <h4 class=\"modal-title pull-left\">Add Account</h4>\n                    <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"hideChildModal()\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n                </div>\n                <div class=\"modal-body\">\n                    <form class=\"form-horizontal\">\n                        <fieldset>\n                            <div class=\"form-group\">\n                                <label for=\"name\" class=\"col-lg-2 control-label\">Account Name</label>\n                                <div class=\"col-lg-10\">\n                                    <input type=\"text\" [(ngModel)]=\"name\" name=\"name\" class=\"form-control\" id=\"name\" placeholder=\"Gmail\">\n                                </div>\n                            </div>\n                            <div class=\"form-group\">\n                                <label for=\"username\" class=\"col-lg-2 control-label\">Emial ID</label>\n                                <div class=\"col-lg-10\">\n                                    <input type=\"email\" [(ngModel)]=\"username\" name=\"username\" class=\"form-control\" id=\"username\" placeholder=\"example@email.com\">\n                                </div>\n                            </div>\n                            <div class=\"form-group\">\n                                <label for=\"password\" class=\"col-lg-2 control-label\">Password</label>\n                                <div class=\"col-lg-10\">\n                                    <input type=\"password\" [(ngModel)]=\"password\" name=\"password\" class=\"form-control\" id=\"password\" placeholder=\"Password\">\n                                </div>\n                            </div>\n                            <div class=\"form-group\">\n                                <div class=\"col-lg-10 col-lg-offset-2\">\n                                    <button (click)=\"onSave()\" class=\"btn btn-success\">Save</button>\n                                    <button type=\"reset\" (click)=\"hideChildModal()\" class=\"btn btn-default\">Cancel</button>\n                                </div>\n                            </div>\n                        </fieldset>\n                    </form>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 

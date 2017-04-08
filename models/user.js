@@ -20,14 +20,19 @@ const UserSchema = mongoose.Schema({
         required: true
     },
     accountInfo: {
-        username: {
-            type: String,
-            required: true
-        },
-        password: {
-            type: String,
-            required: true
-        }
+        type: Array
+        // name: {
+        //     type: String,
+        //     required: true
+        // },
+        // username: {
+        //     type: String,
+        //     required: true
+        // },
+        // password: {
+        //     type: String,
+        //     required: true
+        // }
     }
 });
 
@@ -38,7 +43,7 @@ module.exports.getUserById = function (id, callback) {
 }
 
 module.exports.getUserByUsername = function (username, callback) {
-    const query = { username: username }
+    const query = { username: username };
     User.findOne(query, callback);
 }
 
@@ -50,6 +55,12 @@ module.exports.addUser = function (newUser, callback) {
             newUser.save(callback);
         });
     });
+}
+
+module.exports.addAccount = function(user, account, callback){
+    const query = {username: user};
+    const update = { $set: { accountInfo: account } };
+    User.update(query, update, callback);
 }
 
 module.exports.comparePassword = function (candidatePassword, hash, callback) {

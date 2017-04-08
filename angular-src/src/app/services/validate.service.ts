@@ -14,7 +14,7 @@ export class ValidateService {
   }
 
   validateCompose(email) {
-    if (email.sender == undefined || email.recipient == undefined || email.message == undefined || email.sub == undefined) {
+    if (email.sender == undefined || email.recpt == undefined || email.message == undefined || email.sub == undefined) {
       return false;
     } else {
       return true;

@@ -4,17 +4,17 @@ const router = express.Router();
 router.post("/send", (req, res, next) => {
 
     let username = req.body.sender.split('@')[0];
-    let password = "7895123z*";
+    let password = req.body.password;
     let sender = "<" + req.body.sender + ">";
-    let rcpt = "<" + req.body.recipient + ">";
-    let subject = req.body.sub;
-    let msg = req.body.message;
+    let rcpt = "<"+req.body.recpt+">";
+    let subject = req.body.sub.trim();
+    let msg = req.body.message.trim();
     let emailService = "smtp.gmail.com";
     let port = 587;
-
+    // console.log(req.body);
+    console.log(rcpt);
     const spawn = require('child_process').spawn;
     const sendMail = spawn("python", ["node_smtp_python.py"]);
-
     sendMail.stdout.on('data', (data) => {
         console.log("output: %s", data);
     });
@@ -80,7 +80,7 @@ router.post("/read", (req, res, next) => {
     let username = req.body.username;
     let password = req.body.password;
     let emailID = req.body.id;
-    let emailService = "imap.gmail.com";
+    let emailService = ( username.includes("gmail") ? "imap.gmail.com" : username.includes("live") ? undefined : null);
     let port = 993;
     let message;
     const spawn = require('child_process').spawn;

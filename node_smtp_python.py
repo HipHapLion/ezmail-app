@@ -11,7 +11,6 @@ def main():
     lines = read_in()
 
     sender = lines[0]
-    sys.stdout.write(sender)
     rcpt = lines[1]
     subject = lines[2]
     msg = lines[3]

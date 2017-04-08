@@ -27,12 +27,12 @@ export class MailViewComponent implements OnInit {
 
   ngOnInit() {
     this.authService.getProfile().subscribe(profile => {
-      let account = profile.user;
-      this.account = account.accountInfo;
-      if (this.account == undefined) {
+      let accList = profile.user.accountInfo;
+      if (accList == undefined) {
         this.flashMessages.show("Add an account", { cssClass: "alert-danger", timeout: 3000 });
         this.router.navigate(['/login']);
       } else {
+        this.account = accList[this.emailService.getAccount()];
         this.emailService.getEmails(this.account).subscribe(data => {
           let emails = data.toString().split('=%$^');
 

@@ -1,6 +1,6 @@
 <div class="container">
     <h2 class="page-header"><strong>Dashboard</strong></h2>
-    <div class="container">
+    <!--<div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-6">
                 <div class="panel panel-danger">
@@ -62,7 +62,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="/mail-view">
+                    <a (click)="gotoMail(0)">
                         <div class="panel-footer">
                             <span class="pull-left">Uni Mail</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -85,8 +85,6 @@
                         <a (click)="showChildModal()">
                             <div class="panel-footer">
                                 <span class="pull-left ">Add Email Account</span>
-                                <!--<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                       -->
                                 <div class="clearfix"></div>
                             </div>
                         </a>
@@ -95,95 +93,69 @@
             </div>
         </div>
 
+    </div>-->
 
-
-        <h2 class="page-header">
-            <strong>Group</strong></h2>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-users fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">2</div>
-                                    <div>View Group Emails</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
+    <div *ngFor="let account of accounts; let i = index;">
+        <!--<div class="row">-->
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="container">
+                        <h6>{{account.name}}</h6>
+                        <button class="btn btn-primary" (click)="gotoMail(i)">View Mailbox</button>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-briefcase fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">2</div>
-                                    <div>View Work Emails!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="col-md-9">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="text-center">
-                                        <i class="fa fa-plus-square fa-5x "></i>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <a href="#">
-                                <div class="panel-footer">
-                                    <span class="pull-left ">Add new group</span>
-                                    <!--<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                       -->
-                                    <div class="clearfix"></div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            </div>
+        <!--</div>-->
+    </div>
+    <div class="col-md-3">
+        <div class="card">
+            <div class="container">
+                <button class="btn btn-success" (click)="showChildModal()">Add Account</button>
             </div>
         </div>
     </div>
+
+    <!-- Add account modal -->
     <div bsModal #childModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title pull-left">Add Account</h4>
-          <button type="button" class="close pull-right" aria-label="Close" (click)="hideChildModal()">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Add Account</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="hideChildModal()">
           <span aria-hidden="true">&times;</span>
         </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <fieldset>
+                            <div class="form-group">
+                                <label for="name" class="col-lg-2 control-label">Account Name</label>
+                                <div class="col-lg-10">
+                                    <input type="text" [(ngModel)]="name" name="name" class="form-control" id="name" placeholder="Gmail">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="username" class="col-lg-2 control-label">Emial ID</label>
+                                <div class="col-lg-10">
+                                    <input type="email" [(ngModel)]="username" name="username" class="form-control" id="username" placeholder="example@email.com">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="col-lg-2 control-label">Password</label>
+                                <div class="col-lg-10">
+                                    <input type="password" [(ngModel)]="password" name="password" class="form-control" id="password" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-10 col-lg-offset-2">
+                                    <button (click)="onSave()" class="btn btn-success">Save</button>
+                                    <button type="reset" (click)="hideChildModal()" class="btn btn-default">Cancel</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-            A modal!
-        </div>
-      </div>
     </div>
-  </div>
 </div>

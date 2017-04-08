@@ -24,6 +24,18 @@ router.post("/register", (req, res, next) => {
     });
 });
 
+router.post("/addAccount", (req, res, next) => {
+    let user = req.body.username;
+    let account = req.body.accounts;
+    User.addAccount(user, account, (err, data) => {
+        if(err){
+            res.json({success: false, msg: "Something went wrong."});
+        }else{
+            res.json({success: true, msg: "Account added."});
+        }
+    });
+});
+
 // Authenticate
 router.post("/authenticate", (req, res, next) => {
     const username = req.body.username;

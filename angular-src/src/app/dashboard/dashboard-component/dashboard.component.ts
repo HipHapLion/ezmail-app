@@ -52,17 +52,18 @@ export class DashboardComponent implements OnInit {
         }else{
           this.flashMessages.show(res.msg, {cssClass: "alert-danger", timeout: 3000});
         }
+        window.location.reload();
       });
     });
   }
 
   gotoMail(val) {
-    this.emailService.setAccount(val);
+    this.emailService.storeAccount(val);
     this.router.navigate(['/mail-view']);
   }
 
   print(val){
-    console.log(val);
+    // console.log(val);
   }
 
   public showChildModal(): void {

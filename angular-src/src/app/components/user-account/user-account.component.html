@@ -1,4 +1,4 @@
-<div class="container">
+<div id="small-content" class="container">
   <tabset #staticTabs>
     <tab heading="Profile">
       <div *ngIf="user" ngrole="tabpanel" class="" id="profile">
@@ -24,22 +24,22 @@
       </div>
     </tab>
     <tab heading="Account Info">
+      <p style="padding: 10px; color: red;" *ngIf="!accounts?.length > 0">No email accounts found!.</p>
       <div style="padding-top: 30px">
-        <form *ngIf="user">
-          <div class="form-group">
-            <label for="emailID">Change email ID</label>
-            <input type="text" class="form-control" value="{{ user.accountInfo.username }}" id="emailID" placeholder="username">
+        <form *ngFor="let account of accounts">
+          <div class="well">
+            <div class="form-group">
+              <label for="emailID">Change email ID</label>
+              <input type="text" class="form-control" value="{{ account.username }}" id="emailID" placeholder="username">
+            </div>
+            <div class="form-group">
+              <label for="accountPass">Change Password</label>
+              <input type="password" class="form-control" value="{{ account.password }}" id="accountPass" placeholder="Full Name">
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
           </div>
-          <div class="form-group">
-            <label for="accountPass">Change Password</label>
-            <input type="password" class="form-control" value="{{ user.accountInfo.password }}" id="accountPass" placeholder="Full Name">
-          </div>
-          <button type="submit" class="btn btn-primary">Save</button>
         </form>
       </div>
-    </tab>
-    <tab heading="Setting">
-
     </tab>
   </tabset>
 </div>

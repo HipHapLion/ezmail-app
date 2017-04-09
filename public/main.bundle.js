@@ -24,37 +24,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var EmailService = (function () {
     function EmailService(http) {
         this.http = http;
-        this.currentAccount = 0;
     }
-    EmailService.prototype.setAccount = function (val) {
-        this.currentAccount = val;
+    EmailService.prototype.storeAccount = function (val) {
+        localStorage.setItem('account', val);
     };
-    EmailService.prototype.getAccount = function () {
-        return this.currentAccount;
+    EmailService.prototype.loadAccount = function () {
+        return localStorage.getItem('account');
     };
     EmailService.prototype.sendEmail = function (email) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Tpye', 'application/json');
-        return this.http.post('http://localhost:3000/emails/send', email, { headers: headers }).map(function (res) { return res.json(); });
-        // return this.http.post('/emails/send', email, { headers: headers }).map(res => res.json());
+        // return this.http.post('http://localhost:3000/emails/send', email, { headers: headers }).map(res => res.json());
+        return this.http.post('/emails/send', email, { headers: headers }).map(function (res) { return res.json(); });
     };
     EmailService.prototype.getEmails = function (account) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Tpye', 'application/json');
-        return this.http.post('http://localhost:3000/emails/list', account, { headers: headers }).map(function (res) { return res.json(); });
-        // return this.http.post('/emails/list', account, { headers: headers }).map(res => res.json());
+        // return this.http.post('http://localhost:3000/emails/list', account, { headers: headers }).map(res => res.json());
+        return this.http.post('/emails/list', account, { headers: headers }).map(function (res) { return res.json(); });
     };
     EmailService.prototype.getContent = function (info) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Tpye', 'application/json');
-        return this.http.post('http://localhost:3000/emails/read', info, { headers: headers }).map(function (res) { return res.json(); });
-        // return this.http.post('/emails/read', info, { headers: headers }).map(res => res.json());
+        // return this.http.post('http://localhost:3000/emails/read', info, { headers: headers }).map(res => res.json());
+        return this.http.post('/emails/read', info, { headers: headers }).map(function (res) { return res.json(); });
     };
     EmailService.prototype.deleteMail = function (info) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Tpye', 'application/json');
-        return this.http.post('http://localhost:3000/emails/delete', info, { headers: headers }).map(function (res) { return res.json(); });
-        // return this.http.post('/emails/delete', info, { headers: headers }).map(res => res.json());
+        // return this.http.post('http://localhost:3000/emails/delete', info, { headers: headers }).map(res => res.json());
+        return this.http.post('/emails/delete', info, { headers: headers }).map(function (res) { return res.json(); });
     };
     EmailService = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(), 
@@ -147,28 +146,28 @@ var AuthService = (function () {
     AuthService.prototype.registerUser = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Tpye', 'application/json');
-        return this.http.post('http://localhost:3000/users/register', user, { headers: headers }).map(function (res) { return res.json(); });
-        // return this.http.post('/users/register', user, { headers: headers }).map(res => res.json());
+        // return this.http.post('http://localhost:3000/users/register', user, { headers: headers }).map(res => res.json());
+        return this.http.post('/users/register', user, { headers: headers }).map(function (res) { return res.json(); });
     };
     AuthService.prototype.addAccount = function (account) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Tpye', 'application/json');
-        return this.http.post('http://localhost:3000/users/addAccount', account, { headers: headers }).map(function (res) { return res.json(); });
-        // return this.http.post('/users/addAccount', user, { headers: headers }).map(res => res.json());
+        // return this.http.post('http://localhost:3000/users/addAccount', account, { headers: headers }).map(res => res.json());
+        return this.http.post('/users/addAccount', account, { headers: headers }).map(function (res) { return res.json(); });
     };
     AuthService.prototype.authenticateUser = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Tpye', 'application/json');
-        return this.http.post('http://localhost:3000/users/authenticate', user, { headers: headers }).map(function (res) { return res.json(); });
-        // return this.http.post('/users/authenticate', user, { headers: headers }).map(res => res.json());
+        // return this.http.post('http://localhost:3000/users/authenticate', user, { headers: headers }).map(res => res.json());
+        return this.http.post('/users/authenticate', user, { headers: headers }).map(function (res) { return res.json(); });
     };
     AuthService.prototype.getProfile = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         this.loadToken();
         headers.append('Authorization', this.authToken);
         headers.append('Content-Tpye', 'application/json');
-        return this.http.get('http://localhost:3000/users/profile', { headers: headers }).map(function (res) { return res.json(); });
-        // return this.http.get('/users/profile', { headers: headers }).map(res => res.json());
+        // return this.http.get('http://localhost:3000/users/profile', { headers: headers }).map(res => res.json());
+        return this.http.get('/users/profile', { headers: headers }).map(function (res) { return res.json(); });
     };
     AuthService.prototype.storeUserData = function (token) {
         localStorage.setItem('id_token', token);
@@ -700,7 +699,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var UserAccountComponent = (function () {
-    // account: Object;
     function UserAccountComponent(router, authService) {
         this.router = router;
         this.authService = authService;
@@ -709,6 +707,7 @@ var UserAccountComponent = (function () {
         var _this = this;
         this.authService.getProfile().subscribe(function (profile) {
             _this.user = profile.user;
+            _this.accounts = profile.user.accountInfo;
         }, function (err) {
             console.log(err);
             return false;
@@ -773,6 +772,7 @@ var ComposeComponent = (function () {
     };
     ComposeComponent.prototype.onSend = function () {
         var _this = this;
+        this.flashMessage.show("Connecting to server...", { cssClass: "alert-info", timeout: 3000 });
         if (this.account == "") {
             this.account = undefined;
         }
@@ -787,10 +787,10 @@ var ComposeComponent = (function () {
         }
         this.authService.getProfile().subscribe(function (profile) {
             var account = profile.user;
-            _this.userInfo = account.accountInfo[0];
+            _this.userInfo = _this.getAccountInfo(account.accountInfo, _this.account);
             if (_this.userInfo == undefined) {
-                _this.flashMessage.show("Add an account", { cssClass: "alert-danger", timeout: 3000 });
-                _this.router.navigate(['/login']);
+                _this.flashMessage.show("Add account first", { cssClass: "alert-danger", timeout: 3000 });
+                _this.router.navigate(['/dashboard']);
             }
             else {
                 var email = {
@@ -809,14 +809,26 @@ var ComposeComponent = (function () {
                     return false;
                 }
                 _this.emailService.sendEmail(email).subscribe(function (data) {
-                    console.log(data);
+                    _this.flashMessage.show("Sending email...", { cssClass: "alert-info", timeout: 2000 });
+                    if (data.success) {
+                        _this.flashMessage.show(data.msg, { cssClass: "alert-success", timeout: 5000 });
+                        _this.router.navigate(['/dashboard']);
+                    }
+                    else {
+                        _this.flashMessage.show(data.error, { cssClass: "alert-danger", timeout: 3000 });
+                        _this.router.navigate(['/dashboard']);
+                    }
+                    window.location.reload();
                 });
-                window.location.reload();
             }
         });
     };
-    ComposeComponent.prototype.onSave = function () {
-        console.log("saved ;)");
+    ComposeComponent.prototype.getAccountInfo = function (account, email) {
+        for (var i = 0; i < account.length; i++) {
+            if (account[i].username == email) {
+                return account[i];
+            }
+        }
     };
     ComposeComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
@@ -895,15 +907,16 @@ var DashboardComponent = (function () {
                 else {
                     _this.flashMessages.show(res.msg, { cssClass: "alert-danger", timeout: 3000 });
                 }
+                window.location.reload();
             });
         });
     };
     DashboardComponent.prototype.gotoMail = function (val) {
-        this.emailService.setAccount(val);
+        this.emailService.storeAccount(val);
         this.router.navigate(['/mail-view']);
     };
     DashboardComponent.prototype.print = function (val) {
-        console.log(val);
+        // console.log(val);
     };
     DashboardComponent.prototype.showChildModal = function () {
         this.childModal.show();
@@ -1012,45 +1025,76 @@ var MailViewComponent = (function () {
     }
     MailViewComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.flashMessages.show("Getting your emails please wait...", { cssClass: "alert-info", timeout: 3000 });
         this.authService.getProfile().subscribe(function (profile) {
             var accList = profile.user.accountInfo;
             if (accList == undefined) {
                 _this.flashMessages.show("Add an account", { cssClass: "alert-danger", timeout: 3000 });
-                _this.router.navigate(['/login']);
+                _this.router.navigate(['/dashboard']);
             }
             else {
-                _this.account = accList[_this.emailService.getAccount()];
-                _this.emailService.getEmails(_this.account).subscribe(function (data) {
-                    var emails = data.toString().split('=%$^');
-                    for (var i = 0; i < emails.length; i++) {
-                        var part = emails[i].split('/');
-                        var id = part[0].trim().split(' ');
-                        _this.emails.push({ id: id[0], sub: part[1] });
-                    }
-                });
+                _this.account = accList[_this.emailService.loadAccount()];
+                if (_this.account == undefined) {
+                    // this.flashMessages.show("Add an account", { cssClass: "alert-danger", timeout: 3000 });
+                    _this.router.navigate(['/dashboard']);
+                }
+                else {
+                    _this.emailService.getEmails(_this.account).subscribe(function (data) {
+                        if (data.success) {
+                            var emails = data.emailList.toString().split('=%$^');
+                            for (var i = 0; i < emails.length; i++) {
+                                var part = emails[i].split('/');
+                                var id = part[0].trim().split(' ');
+                                if (part[1] != undefined) {
+                                    _this.emails.push({ id: id[0], sub: part[1].trim() });
+                                }
+                            }
+                            if (_this.emails.length <= 1) {
+                                _this.flashMessages.show("No emails were retrieved", { cssClass: "alert-danger", timeout: 3000 });
+                                _this.router.navigate(['/dashboard']);
+                            }
+                        }
+                        else {
+                            _this.flashMessages.show(data.error, { cssClass: "alert-danger", timeout: 3000 });
+                            _this.router.navigate(['/dashboard']);
+                        }
+                    });
+                }
             }
         });
     };
     MailViewComponent.prototype.onView = function (id) {
         var _this = this;
         this.content = null;
+        this.error = null;
         var info = {
             username: this.account.username,
             password: this.account.password,
             id: id
         };
         this.emailService.getContent(info).subscribe(function (content) {
-            _this.content = content;
+            if (content.success) {
+                _this.content = content.content;
+            }
+            else {
+                _this.error = content.error;
+            }
         });
     };
     MailViewComponent.prototype.onDelete = function (id) {
+        var _this = this;
         var info = {
             username: this.account.username,
             password: this.account.password,
             id: id
         };
         this.emailService.deleteMail(info).subscribe(function (msg) {
-            console.log(msg);
+            if (msg.success) {
+                _this.flashMessages.show(msg.msg, { cssClass: "alert-success", timeout: 5000 });
+            }
+            else {
+                _this.flashMessages.show(msg.error, { cssClass: "alert-danger", timeout: 5000 });
+            }
             window.location.reload();
         });
     };
@@ -1121,7 +1165,7 @@ exports = module.exports = __webpack_require__(16)();
 
 
 // module
-exports.push([module.i, "footer {\n  position: fixed;\n  bottom: 0;\n  margin-left: 45%; }\n\n.footer-block ul {\n  margin-left: -30%;\n  padding-left: 0; }\n  .footer-block ul li {\n    display: inline; }\n\n.footer-block .spacer {\n  padding: 0 10px; }\n", ""]);
+exports.push([module.i, "footer {\n  width: 680px;\n  text-align: center;\n  height: 40px;\n  padding-top: 10px;\n  margin: -50px auto 0 auto; }\n\n.footer-block ul li {\n  display: inline; }\n\n.footer-block .spacer {\n  padding: 0 10px; }\n\n#clearfooter {\n  height: 50px; }\n", ""]);
 
 // exports
 
@@ -1193,7 +1237,7 @@ exports = module.exports = __webpack_require__(16)();
 
 
 // module
-exports.push([module.i, ".scrolling {\n  position: relative;\n  height: 550px;\n  overflow-y: scroll; }\n", ""]);
+exports.push([module.i, ".scrolling {\n  position: relative;\n  height: 610px;\n  overflow-y: scroll; }\n", ""]);
 
 // exports
 
@@ -1283,7 +1327,7 @@ exports = module.exports = __webpack_require__(16)();
 
 
 // module
-exports.push([module.i, ".card {\n  /* Add shadows to create the \"card\" effect */\n  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);\n  -webkit-transition: 0.3s;\n  transition: 0.3s; }\n\n/* On mouse-over, add a deeper shadow */\n/* Add some padding inside the card container */\n.container {\n  padding: 2px 16px;\n  margin-bottom: 10px; }\n", ""]);
+exports.push([module.i, ".card {\n  /* Add shadows to create the \"card\" effect */\n  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);\n  -webkit-transition: 0.3s;\n  transition: 0.3s; }\n\n/* On mouse-over, add a deeper shadow */\n/* Add some padding inside the card container */\n.container {\n  padding: 2px 16px;\n  margin-bottom: 10px; }\n\n.modal-body {\n  word-break: break-all; }\n", ""]);
 
 // exports
 
@@ -1550,28 +1594,28 @@ webpackContext.id = 748;
 /***/ 770:
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\n<flash-messages></flash-messages>\n<router-outlet></router-outlet>\n<app-footer></app-footer>"
+module.exports = "<app-navbar></app-navbar>\n<flash-messages></flash-messages>\n<router-outlet></router-outlet>\n<!--<app-footer></app-footer>-->"
 
 /***/ }),
 
 /***/ 771:
 /***/ (function(module, exports) {
 
-module.exports = "<footer>\n  <div class=\"footer-block\">\n    <div class=\"row\">\n      <ul>\n        <li><a href=\"\">Home</a></li>\n        <li class=\"spacer\">|</li>\n        <li><a href=\"/overview\">About Us</a></li>\n        <li class=\"spacer\">|</li>\n        <li><a href=\"#\">Site Map</a></li>\n        <li class=\"spacer\">|</li>\n        <li><a href=\"#\">Site Map</a></li>\n        <li class=\"spacer\">|</li>\n        <li><a href=\"#\">Site Map</a></li>\n      </ul>\n    </div>\n    <div class=\"row\">\n      <p id=\"cp-right\">Copyright <span class=\"glyphicon glyphicon-copyright-mark\" aria-hidden=\"true\"></span> 2017</p>\n    </div>\n  </div>\n</footer>"
+module.exports = "<div id=\"clearfooter\"></div>\n<footer>\n  <div class=\"footer-block\">\n    <div class=\"row\">\n      <ul>\n        <li><a href=\"\">Home</a></li>\n        <li class=\"spacer\">|</li>\n        <li><a href=\"/overview\">About Us</a></li>\n        <li class=\"spacer\">|</li>\n        <li><a href=\"#\">Site Map</a></li>\n        <li class=\"spacer\">|</li>\n        <li><a href=\"#\">Site Map</a></li>\n        <li class=\"spacer\">|</li>\n        <li><a href=\"#\">Site Map</a></li>\n      </ul>\n    </div>\n    <div class=\"row\">\n      <p id=\"cp-right\">Copyright <span class=\"glyphicon glyphicon-copyright-mark\" aria-hidden=\"true\"></span> 2017</p>\n    </div>\n  </div>\n</footer>"
 
 /***/ }),
 
 /***/ 772:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div class=\"jumbotron text-center\">\n    <h1>EZ Mail App</h1>\n    <p class=\"lead\">Emailing has never been easier..</p>\n    <div>\n      <a class=\"btn btn-primary\" [routerLink]=\"['/register']\">Register</a>\n      <a class=\"btn btn-default\" [routerLink]=\"['/login']\">Login</a>\n    </div>\n  </div>\n\n  <div class=\"row\">\n    <div class=\"col-md-4\">\n      <h1>Secure API</h1>\n      <p>Secure access to your info using jwt tokens.</p>\n    </div>\n    <div class=\"col-md-4\">\n      <h1>Angular 2 front-end</h1>\n      <p>Secure access to your info using jwt tokens.</p>\n    </div>\n    <div class=\"col-md-4\">\n      <h1>Secure API</h1>\n      <p>Secure access to your info using jwt tokens.</p>\n    </div>\n  </div>\n</div>"
+module.exports = "<div id=\"small-content\" class=\"container\">\n    <div class=\"jumbotron text-center\">\n        <h1>EZ Mail App</h1>\n        <p class=\"lead\">Emailing has never been easier..</p>\n        <div>\n            <a class=\"btn btn-primary\" [routerLink]=\"['/register']\">Register</a>\n            <a class=\"btn btn-default\" [routerLink]=\"['/login']\">Login</a>\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"col-md-4\">\n            <h1>Secure API</h1>\n            <p>Secure access to your info using jwt tokens.</p>\n        </div>\n        <div class=\"col-md-4\">\n            <h1>Angular 2 front-end</h1>\n            <p>Secure access to your info using jwt tokens.</p>\n        </div>\n        <div class=\"col-md-4\">\n            <h1>Secure API</h1>\n            <p>Secure access to your info using jwt tokens.</p>\n        </div>\n    </div>\n</div>\n<app-footer></app-footer>"
 
 /***/ }),
 
 /***/ 773:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <h2 class=\"page-header\">Login</h2>\n  <form (submit)=\"onLoginSubmit()\">\n    <div class=\"form-group\">\n      <label>Username</label>\n      <input type=\"text\" class=\"form-control\" [(ngModel)]=\"username\" name=\"username\">\n    </div>\n    <div class=\"form-group\">\n      <label>Password</label>\n      <input type=\"password\" class=\"form-control\" [(ngModel)]=\"password\" name=\"password\">\n    </div>\n    <input type=\"submit\" class=\"btn btn-primary\" value=\"Login\">\n  </form>\n</div>"
+module.exports = "<div id=\"small-content\" class=\"container\">\n    <h2 class=\"page-header\">Login</h2>\n    <form (submit)=\"onLoginSubmit()\">\n        <div class=\"form-group\">\n            <label>Username</label>\n            <input type=\"text\" class=\"form-control\" [(ngModel)]=\"username\" name=\"username\">\n        </div>\n        <div class=\"form-group\">\n            <label>Password</label>\n            <input type=\"password\" class=\"form-control\" [(ngModel)]=\"password\" name=\"password\">\n        </div>\n        <input type=\"submit\" class=\"btn btn-primary\" value=\"Login\">\n    </form>\n</div>\n<app-footer></app-footer>"
 
 /***/ }),
 
@@ -1585,42 +1629,42 @@ module.exports = "<nav class=\"navbar navbar-default\">\n  <div class=\"containe
 /***/ 775:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n  <div class=\"col-lg-10 col-md-8 scrolling\" data-spy=\"scroll\" data-target=\"#navbar\" data-offset=\"50\">\n    <div id=\"team\" class=\"box\">\n      <h1 class=\"page-header\">Meet the team</h1>\n      <div class=\"row\">\n        <div class=\"col-sm-6 col-md-4\">\n          <div class=\"thumbnail\">\n            <img src=\"https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAOLAAAAJDljMTNiNGRlLWU2MDYtNGE5NS05NjI0LTFmNmMzZTFhNDhiYw.jpg\" width=\"350\" height=\"350\" alt=\"Roshan\">\n            <div class=\"caption\">\n              <h3>Roshan Sureen</h3>\n              <p>\n                <b>ID: </b>Who cares?<br>\n                <b>Title: </b>Lead Angular 2 developer <br>\n                <b>Best works: </b> Settings page.<br>\n              </p>\n              <p><a href=\"https://www.linkedin.com/in/roshan-sureen-40a60484/\" target=\"_blank\" class=\"btn btn-success\" role=\"button\">View Profile</a></p>\n            </div>\n          </div>\n        </div>\n        <div class=\"col-sm-6 col-md-4\">\n          <div class=\"thumbnail\">\n            <img src=\"https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAA3AAAAAJGM0ZDY3MzA5LWI0NzctNDBiZC04NmE4LTMwZjY2MTUyNGIzMg.jpg\" width=\"350\" height=\"350\" alt=\"Maryam Abu\">\n            <div class=\"caption\">\n              <h3>Maryam Abu</h3>\n              <p>\n                <b>ID: </b>I cant remember <br>\n                <b>Title: </b>Lead designer <br>\n                <b>Best works: </b> Dashboard and Compose page.<br>\n              </p>\n              <p><a href=\"https://www.linkedin.com/in/maryam-abubakar-099546105/\" target=\"_blank\" class=\"btn btn-success\" role=\"button\">View Profile</a></p>\n            </div>\n          </div>\n        </div>\n        <div class=\"col-sm-6 col-md-4\">\n          <div class=\"thumbnail\">\n            <img src=\"http://www.name-list.net/img/portrait/Grigor_8.jpg\" width=\"350\" height=\"350\" style=\"height: 330px;\" alt=\"Grigor Davtyan\">\n            <div class=\"caption\">\n              <h3>Grigor Davtyan</h3>\n              <p>\n                <b>ID: </b>It doesnt matter. <br>\n                <b>Title: </b>Backend developer. <br>\n                <b>Best works: </b>Yet to see.<br>\n              </p>\n              <p><a href=\"https://www.linkedin.com/in/grigor-davtyan-73769482/\" target=\"_blank\" class=\"btn btn-success\" role=\"button\">View Profile</a></p>\n            </div>\n          </div>\n        </div>\n      </div>\n      <div class=\"row\">\n        <div class=\"col-sm-6 col-md-4\">\n          <div class=\"thumbnail\">\n            <img src=\"https://lh3.googleusercontent.com/-kdF8TzBipv8/WFK-6roxlSI/AAAAAAAAAbs/f_6443IvyJkQHQpc8x6XIFpiCSn9mB0kwCEw/w139-h140-p/profile-pic.jpg\" width=\"350\" height=\"350\" alt=\"Noha Philip\">\n            <div class=\"caption\">\n              <h3>Noha Philip</h3>\n              <p>\n                <b>ID: </b>H00172276 <br>\n                <b>Title: </b>Team Leader<br>\n                <b>Best works: </b>Mail View page, MEAN stack integration and jwt authentication.<br>\n              </p>\n              <p><a href=\"https://www.linkedin.com/in/noha-philip-57854a74/\" target=\"_blank\" class=\"btn btn-success\" role=\"button\">View Profile</a></p>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    <div id=\"sitemap\" class=\"box\">\n      <h1 class=\"page-header\">Site Map</h1>\n      \n      <h4> <a href=\"/\">Home Page</a></h4>\n      <p>The first thing you see.</p>\n      \n      <h4> <a href=\"/overview\">About Us</a></h4>\n      <p>The page your are in right now.</p>\n\n      <h4> <a href=\"/login\">Login</a></h4>\n      <p>The most important part of the website.</p>\n\n      <h4> <a href=\"/register\">Register</a></h4>\n      <p>The easiest way we steal your data.</p>\n\n      <h4> <a href=\"/dashboard\">Dashboard</a></h4>\n      <p>The page where the user adds multiple email accounts.</p>\n\n      <h4> <a href=\"/compose\">New Mail</a></h4>\n      <p>The page where the user composes a mail.</p>\n\n      <h4> <a href=\"/mail-view\">Mail View</a></h4>\n      <p>The page where the user views his/her emails.</p>\n\n      <h4> <a href=\"/user-account\">User Account</a></h4>\n      <p>To really show how much time we got to waste.</p>\n    </div>\n    <div id=\"libs\" class=\"box\">\n      <h1 class=\"page-header\">Frameworks & Libraries used in this project</h1>\n\n      <h4>Angular 2</h4>\n      <p>The most popular front-end framework and the one thing everyone agreed to use.(exception == grigor).</p>\n\n      <h4>Express</h4>\n      <p>Ez node server. That's how we roll.</p>\n\n      <h4>MongoDB</h4>\n      <p>Didn't feel like installing mysql.</p>\n\n      <h4>Node js</h4>\n      <p>The house of cards.</p>\n\n      <h4>Bootstrap Sass</h4>\n      <p>Got tired with just Bootstrap.</p>\n\n      <h4>JWT Tokens</h4>\n      <p>Just to complicate things.</p>\n\n      <h4>JQuery</h4>\n      <p>We didn't have another choice.</p>\n\n      <h4>Font Awesome</h4>\n      <p>I only do awesome.</p>\n\n    </div>\n  </div>\n  <div class=\"col-lg-2\">\n    <div id=\"navbar\">\n      <ul class=\"nav nav-pills nav-stacked\">\n        <li role=\"presentation\" class=\"active\"><a href=\"overview#team\" data-target=\"#team\">Team GRMP</a></li>\n        <li role=\"presentation\"><a href=\"overview#sitemap\" data-target=\"#sitemap\">Site Map</a></li>\n        <li role=\"presentation\"><a href=\"overview#libs\" data-target=\"#libs\">Frameworks & Libraries</a></li>\n      </ul>\n    </div>\n  </div>\n</div>"
+module.exports = "<div class=\"container-fluid\">\n    <div class=\"col-lg-10 col-md-8 scrolling\" data-spy=\"scroll\" data-target=\"#navbar\" data-offset=\"50\">\n        <div id=\"team\" class=\"box\">\n            <h1 class=\"page-header\">Meet the team</h1>\n            <div class=\"row\">\n                <div class=\"col-sm-6 col-md-4\">\n                    <div class=\"thumbnail\">\n                        <img src=\"https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAOLAAAAJDljMTNiNGRlLWU2MDYtNGE5NS05NjI0LTFmNmMzZTFhNDhiYw.jpg\" width=\"350\" height=\"350\" alt=\"Roshan\">\n                        <div class=\"caption\">\n                            <h3>Roshan Sureen</h3>\n                            <p>\n                                <b>ID: </b>Who cares?<br>\n                                <b>Title: </b>Lead Angular 2 developer <br>\n                                <b>Best works: </b> Settings page.<br>\n                            </p>\n                            <p><a href=\"https://www.linkedin.com/in/roshan-sureen-40a60484/\" target=\"_blank\" class=\"btn btn-success\" role=\"button\">View Profile</a></p>\n                        </div>\n                    </div>\n                </div>\n                <div class=\"col-sm-6 col-md-4\">\n                    <div class=\"thumbnail\">\n                        <img src=\"https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAA3AAAAAJGM0ZDY3MzA5LWI0NzctNDBiZC04NmE4LTMwZjY2MTUyNGIzMg.jpg\" width=\"350\" height=\"350\" alt=\"Maryam Abu\">\n                        <div class=\"caption\">\n                            <h3>Maryam Abu</h3>\n                            <p>\n                                <b>ID: </b>I cant remember <br>\n                                <b>Title: </b>Lead designer <br>\n                                <b>Best works: </b> Dashboard and Compose page.<br>\n                            </p>\n                            <p><a href=\"https://www.linkedin.com/in/maryam-abubakar-099546105/\" target=\"_blank\" class=\"btn btn-success\" role=\"button\">View Profile</a></p>\n                        </div>\n                    </div>\n                </div>\n                <div class=\"col-sm-6 col-md-4\">\n                    <div class=\"thumbnail\">\n                        <img src=\"http://www.name-list.net/img/portrait/Grigor_8.jpg\" width=\"350\" height=\"350\" style=\"height: 330px;\" alt=\"Grigor Davtyan\">\n                        <div class=\"caption\">\n                            <h3>Grigor Davtyan</h3>\n                            <p>\n                                <b>ID: </b>It doesnt matter. <br>\n                                <b>Title: </b>Backend developer. <br>\n                                <b>Best works: </b>Yet to see.<br>\n                            </p>\n                            <p><a href=\"https://www.linkedin.com/in/grigor-davtyan-73769482/\" target=\"_blank\" class=\"btn btn-success\" role=\"button\">View Profile</a></p>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"col-sm-6 col-md-4\">\n                    <div class=\"thumbnail\">\n                        <img src=\"https://lh3.googleusercontent.com/-kdF8TzBipv8/WFK-6roxlSI/AAAAAAAAAbs/f_6443IvyJkQHQpc8x6XIFpiCSn9mB0kwCEw/w139-h140-p/profile-pic.jpg\" width=\"350\" height=\"350\" alt=\"Noha Philip\">\n                        <div class=\"caption\">\n                            <h3>Noha Philip</h3>\n                            <p>\n                                <b>ID: </b>H00172276 <br>\n                                <b>Title: </b>Team Leader<br>\n                                <b>Best works: </b>Mail View page, MEAN stack integration and jwt authentication.<br>\n                            </p>\n                            <p><a href=\"https://www.linkedin.com/in/noha-philip-57854a74/\" target=\"_blank\" class=\"btn btn-success\" role=\"button\">View Profile</a></p>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div id=\"sitemap\" class=\"box\">\n            <h1 class=\"page-header\">Site Map</h1>\n\n            <h4> <a href=\"/\">Home Page</a></h4>\n            <p>The first thing you see.</p>\n\n            <h4> <a href=\"/overview\">About Us</a></h4>\n            <p>The page your are in right now.</p>\n\n            <h4> <a href=\"/login\">Login</a></h4>\n            <p>The most important part of the website.</p>\n\n            <h4> <a href=\"/register\">Register</a></h4>\n            <p>The easiest way we steal your data.</p>\n\n            <h4> <a href=\"/dashboard\">Dashboard</a></h4>\n            <p>The page where the user adds multiple email accounts.</p>\n\n            <h4> <a href=\"/compose\">New Mail</a></h4>\n            <p>The page where the user composes a mail.</p>\n\n            <h4> <a href=\"/mail-view\">Mail View</a></h4>\n            <p>The page where the user views his/her emails.</p>\n\n            <h4> <a href=\"/user-account\">User Account</a></h4>\n            <p>To really show how much time we got to waste.</p>\n        </div>\n        <div id=\"libs\" class=\"box\">\n            <h1 class=\"page-header\">Frameworks & Libraries used in this project</h1>\n\n            <h4>Angular 2</h4>\n            <p>The most popular front-end framework and the one thing everyone agreed to use.(exception == grigor).</p>\n\n            <h4>Express</h4>\n            <p>Ez node server. That's how we roll.</p>\n\n            <h4>MongoDB</h4>\n            <p>Didn't feel like installing mysql.</p>\n\n            <h4>Node js</h4>\n            <p>The house of cards.</p>\n\n            <h4>Bootstrap Sass</h4>\n            <p>Got tired with just Bootstrap.</p>\n\n            <h4>JWT Tokens</h4>\n            <p>Just to complicate things.</p>\n\n            <h4>JQuery</h4>\n            <p>We didn't have another choice.</p>\n\n            <h4>Font Awesome</h4>\n            <p>I only do awesome.</p>\n\n        </div>\n    </div>\n    <div class=\"col-lg-2\">\n        <div id=\"navbar\">\n            <ul class=\"nav nav-pills nav-stacked\">\n                <li role=\"presentation\" class=\"active\"><a href=\"overview#team\" data-target=\"#team\">Team GRMP</a></li>\n                <li role=\"presentation\"><a href=\"overview#sitemap\" data-target=\"#sitemap\">Site Map</a></li>\n                <li role=\"presentation\"><a href=\"overview#libs\" data-target=\"#libs\">Frameworks & Libraries</a></li>\n            </ul>\n        </div>\n    </div>\n</div>\n<app-footer></app-footer>"
 
 /***/ }),
 
 /***/ 776:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n    <h2 class=\"page-header\">Register</h2>\n    <form (submit)=\"onRegisterSubmit()\">\n        <div class=\"form-group\">\n            <label>Name</label>\n            <input type=\"text\" class=\"form-control\" [(ngModel)]=\"name\" name=\"name\">\n        </div>\n        <div class=\"form-group\">\n            <label>Username</label>\n            <input type=\"text\" class=\"form-control\" [(ngModel)]=\"username\" name=\"username\">\n        </div>\n        <div class=\"form-group\">\n            <label>Email</label>\n            <input type=\"text\" class=\"form-control\" [(ngModel)]=\"email\" name=\"email\">\n        </div>\n        <div class=\"form-group\">\n            <label>Password</label>\n            <input type=\"password\" class=\"form-control\" [(ngModel)]=\"password\" name=\"password\">\n        </div>\n        <input type=\"submit\" class=\"btn btn-primary\" value=\"Submit\">\n    </form>\n</div>"
+module.exports = "<div id=\"small-content\" class=\"container\">\n    <h2 class=\"page-header\">Register</h2>\n    <form (submit)=\"onRegisterSubmit()\">\n        <div class=\"form-group\">\n            <label>Name</label>\n            <input type=\"text\" class=\"form-control\" [(ngModel)]=\"name\" name=\"name\">\n        </div>\n        <div class=\"form-group\">\n            <label>Username</label>\n            <input type=\"text\" class=\"form-control\" [(ngModel)]=\"username\" name=\"username\">\n        </div>\n        <div class=\"form-group\">\n            <label>Email</label>\n            <input type=\"text\" class=\"form-control\" [(ngModel)]=\"email\" name=\"email\">\n        </div>\n        <div class=\"form-group\">\n            <label>Password</label>\n            <input type=\"password\" class=\"form-control\" [(ngModel)]=\"password\" name=\"password\">\n        </div>\n        <input type=\"submit\" class=\"btn btn-primary\" value=\"Submit\">\n    </form>\n</div>\n<app-footer></app-footer>"
 
 /***/ }),
 
 /***/ 777:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <tabset #staticTabs>\n    <tab heading=\"Profile\">\n      <div *ngIf=\"user\" ngrole=\"tabpanel\" class=\"\" id=\"profile\">\n        <form>\n          <div class=\"form-group\">\n            <label for=\"exampleInputEmail1\">User Name</label>\n            <input type=\"text\" class=\"form-control\" value=\"{{ user.username }}\" id=\"exampleInputEmail1\" placeholder=\"username\">\n          </div>\n          <div class=\"form-group\">\n            <label for=\"exampleInputEmail1\">Full Name</label>\n            <input type=\"text\" class=\"form-control\" value=\"{{ user.name }}\" id=\"exampleInputEmail1\" placeholder=\"Full Name\">\n          </div>\n          <div class=\"form-group\">\n            <label for=\"exampleInputEmail1\">Email address</label>\n            <input type=\"email\" class=\"form-control\" value=\"{{ user.email }}\" id=\"exampleInputEmail1\" placeholder=\"Email\">\n          </div>\n          <div class=\"form-group\">\n            <label for=\"newPass\">Change Current Password</label>\n            <input type=\"password\" class=\"form-control\" id=\"newPass\" placeholder=\"New Password\">\n          </div>\n          <button type=\"submit\" class=\"btn btn-primary\">Save</button>\n        </form>\n      </div>\n    </tab>\n    <tab heading=\"Account Info\">\n      <div style=\"padding-top: 30px\">\n        <form *ngIf=\"user\">\n          <div class=\"form-group\">\n            <label for=\"emailID\">Change email ID</label>\n            <input type=\"text\" class=\"form-control\" value=\"{{ user.accountInfo.username }}\" id=\"emailID\" placeholder=\"username\">\n          </div>\n          <div class=\"form-group\">\n            <label for=\"accountPass\">Change Password</label>\n            <input type=\"password\" class=\"form-control\" value=\"{{ user.accountInfo.password }}\" id=\"accountPass\" placeholder=\"Full Name\">\n          </div>\n          <button type=\"submit\" class=\"btn btn-primary\">Save</button>\n        </form>\n      </div>\n    </tab>\n    <tab heading=\"Setting\">\n\n    </tab>\n  </tabset>\n</div>"
+module.exports = "<div id=\"small-content\" class=\"container\">\n  <tabset #staticTabs>\n    <tab heading=\"Profile\">\n      <div *ngIf=\"user\" ngrole=\"tabpanel\" class=\"\" id=\"profile\">\n        <form>\n          <div class=\"form-group\">\n            <label for=\"exampleInputEmail1\">User Name</label>\n            <input type=\"text\" class=\"form-control\" value=\"{{ user.username }}\" id=\"exampleInputEmail1\" placeholder=\"username\">\n          </div>\n          <div class=\"form-group\">\n            <label for=\"exampleInputEmail1\">Full Name</label>\n            <input type=\"text\" class=\"form-control\" value=\"{{ user.name }}\" id=\"exampleInputEmail1\" placeholder=\"Full Name\">\n          </div>\n          <div class=\"form-group\">\n            <label for=\"exampleInputEmail1\">Email address</label>\n            <input type=\"email\" class=\"form-control\" value=\"{{ user.email }}\" id=\"exampleInputEmail1\" placeholder=\"Email\">\n          </div>\n          <div class=\"form-group\">\n            <label for=\"newPass\">Change Current Password</label>\n            <input type=\"password\" class=\"form-control\" id=\"newPass\" placeholder=\"New Password\">\n          </div>\n          <button type=\"submit\" class=\"btn btn-primary\">Save</button>\n        </form>\n      </div>\n    </tab>\n    <tab heading=\"Account Info\">\n      <p style=\"padding: 10px; color: red;\" *ngIf=\"!accounts?.length > 0\">No email accounts found!.</p>\n      <div style=\"padding-top: 30px\">\n        <form *ngFor=\"let account of accounts\">\n          <div class=\"well\">\n            <div class=\"form-group\">\n              <label for=\"emailID\">Change email ID</label>\n              <input type=\"text\" class=\"form-control\" value=\"{{ account.username }}\" id=\"emailID\" placeholder=\"username\">\n            </div>\n            <div class=\"form-group\">\n              <label for=\"accountPass\">Change Password</label>\n              <input type=\"password\" class=\"form-control\" value=\"{{ account.password }}\" id=\"accountPass\" placeholder=\"Full Name\">\n            </div>\n            <button type=\"submit\" class=\"btn btn-primary\">Save</button>\n          </div>\n        </form>\n      </div>\n    </tab>\n  </tabset>\n</div>"
 
 /***/ }),
 
 /***/ 778:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n    <div class=\"well\">\n        <form class=\"form-horizontal\">\n            <fieldset>\n                <legend>New Email</legend>\n                <div class=\"form-group\">\n                    <label for=\"account\" class=\"col-lg-2 control-label\">From</label>\n                    <div class=\"col-lg-10\">\n                        <input type=\"account\" [(ngModel)]=\"account\" name=\"account\" class=\"form-control\" id=\"account\" placeholder=\"Sender\">\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"reciever\" class=\"col-lg-2 control-label\">To</label>\n                    <div class=\"col-lg-10\">\n                        <input type=\"email\" [(ngModel)]=\"reciever\" name=\"reciever\" class=\"form-control\" id=\"reciever\" placeholder=\"Recepient\">\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"subject\" class=\"col-lg-2 control-label\">Subject</label>\n                    <div class=\"col-lg-10\">\n                        <input type=\"text\" [(ngModel)]=\"subject\" name=\"subject\" class=\"form-control\" id=\"subject\" placeholder=\"Subject\">\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"message\" class=\"col-lg-2 control-label\">Message</label>\n                    <div class=\"col-lg-10\">\n                        <textarea [(ngModel)]=\"message\" name=\"message\" class=\"form-control\" rows=\"3\" id=\"message\"></textarea>\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <div class=\"col-lg-10 col-lg-offset-2\">\n                        <button (click)=\"onSend()\" class=\"btn btn-success\">Send</button>\n                        <button (click)=\"onSave()\" class=\"btn btn-primary\">Save</button>\n                        <button type=\"reset\" class=\"btn btn-default\">Discard</button>\n                    </div>\n                </div>\n            </fieldset>\n        </form>\n    </div>\n</div>"
+module.exports = "<div id=\"small-content\" class=\"container\">\n    <div class=\"well\">\n        <form class=\"form-horizontal\">\n            <fieldset>\n                <legend>New Email</legend>\n                <div class=\"form-group\">\n                    <label for=\"account\" class=\"col-lg-2 control-label\">From</label>\n                    <div class=\"col-lg-10\">\n                        <input type=\"account\" [(ngModel)]=\"account\" name=\"account\" class=\"form-control\" id=\"account\" placeholder=\"Sender\">\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"reciever\" class=\"col-lg-2 control-label\">To</label>\n                    <div class=\"col-lg-10\">\n                        <input type=\"email\" [(ngModel)]=\"reciever\" name=\"reciever\" class=\"form-control\" id=\"reciever\" placeholder=\"Recepient\">\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"subject\" class=\"col-lg-2 control-label\">Subject</label>\n                    <div class=\"col-lg-10\">\n                        <input type=\"text\" [(ngModel)]=\"subject\" name=\"subject\" class=\"form-control\" id=\"subject\" placeholder=\"Subject\">\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"message\" class=\"col-lg-2 control-label\">Message</label>\n                    <div class=\"col-lg-10\">\n                        <textarea [(ngModel)]=\"message\" name=\"message\" class=\"form-control\" rows=\"3\" id=\"message\"></textarea>\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <div class=\"col-lg-10 col-lg-offset-2\">\n                        <button (click)=\"onSend()\" class=\"btn btn-success\">Send</button>\n                        <button type=\"reset\" class=\"btn btn-default\">Discard</button>\n                    </div>\n                </div>\n            </fieldset>\n        </form>\n    </div>\n</div>\n<app-footer></app-footer>"
 
 /***/ }),
 
 /***/ 779:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n    <h2 class=\"page-header\"><strong>Dashboard</strong></h2>\n    <!--<div class=\"container\">\n        <div class=\"row\">\n            <div class=\"col-lg-3 col-md-6\">\n                <div class=\"panel panel-danger\">\n                    <div class=\"panel-heading\">\n                        <div class=\"row\">\n                            <div class=\"col-xs-3\">\n                                <i class=\"fa fa-google fa-5x\"></i>\n                            </div>\n                            <div class=\"col-xs-9 text-right\">\n                                <div class=\"huge\">26</div>\n                                <div>New Mails!</div>\n                            </div>\n                        </div>\n                    </div>\n                    <a href=\"#\">\n                        <div class=\"panel-footer\">\n                            <span class=\"pull-left\">Gmail</span>\n                            <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                            <div class=\"clearfix\"></div>\n                        </div>\n                    </a>\n                </div>\n            </div>\n\n            <div class=\"col-lg-3 col-md-6\">\n\n                <div class=\"panel panel-info\">\n                    <div class=\"panel-heading\">\n                        <div class=\"row\">\n                            <div class=\"col-xs-3\">\n                                <i class=\"fa fa-yahoo fa-5x\"></i>\n                            </div>\n                            <div class=\"col-xs-9 text-right\">\n                                <div class=\"huge\">263</div>\n                                <div>New Mails!</div>\n                            </div>\n                        </div>\n                    </div>\n                    <a href=\"#\">\n                        <div class=\"panel-footer\">\n                            <span class=\"pull-left\">Yahoo</span>\n                            <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                            <div class=\"clearfix\"></div>\n                        </div>\n                    </a>\n                </div>\n            </div>\n            <div class=\"col-lg-3 col-md-6\">\n\n                <div class=\"panel panel-primary\">\n                    <div class=\"panel-heading\">\n                        <div class=\"row\">\n                            <div class=\"col-xs-3\">\n                                <i class=\"fa fa-envelope fa-5x\"></i>\n                            </div>\n                            <div class=\"col-xs-9 text-right\">\n                                <div class=\"huge\">2</div>\n                                <div>New Mails!</div>\n                            </div>\n                        </div>\n                    </div>\n                    <a (click)=\"gotoMail(0)\">\n                        <div class=\"panel-footer\">\n                            <span class=\"pull-left\">Uni Mail</span>\n                            <span class=\"pull-right\"><i class=\"fa fa-arrow-circle-right\"></i></span>\n                            <div class=\"clearfix\"></div>\n                        </div>\n                    </a>\n                </div>\n            </div>\n            <div class=\"col-lg-3 col-md-6\">\n                <div class=\"col-md-9\">\n                    <div class=\"panel panel-primary\">\n                        <div class=\"panel-heading\">\n                            <div class=\"row\">\n                                <div class=\"text-center\">\n                                    <i class=\"fa fa-plus-square fa-5x \"></i>\n                                </div>\n\n                            </div>\n                        </div>\n                        <a (click)=\"showChildModal()\">\n                            <div class=\"panel-footer\">\n                                <span class=\"pull-left \">Add Email Account</span>\n                                <div class=\"clearfix\"></div>\n                            </div>\n                        </a>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n    </div>-->\n\n    <div *ngFor=\"let account of accounts; let i = index;\">\n        <!--<div class=\"row\">-->\n            <div class=\"col-md-3\">\n                <div class=\"card\">\n                    <div class=\"container\">\n                        <h6>{{account.name}}</h6>\n                        <button class=\"btn btn-primary\" (click)=\"gotoMail(i)\">View Mailbox</button>\n                    </div>\n                </div>\n            </div>\n        <!--</div>-->\n    </div>\n    <div class=\"col-md-3\">\n        <div class=\"card\">\n            <div class=\"container\">\n                <button class=\"btn btn-success\" (click)=\"showChildModal()\">Add Account</button>\n            </div>\n        </div>\n    </div>\n\n    <!-- Add account modal -->\n    <div bsModal #childModal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"mySmallModalLabel\" aria-hidden=\"true\">\n        <div class=\"modal-dialog modal-lg\">\n            <div class=\"modal-content\">\n                <div class=\"modal-header\">\n                    <h4 class=\"modal-title pull-left\">Add Account</h4>\n                    <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"hideChildModal()\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n                </div>\n                <div class=\"modal-body\">\n                    <form class=\"form-horizontal\">\n                        <fieldset>\n                            <div class=\"form-group\">\n                                <label for=\"name\" class=\"col-lg-2 control-label\">Account Name</label>\n                                <div class=\"col-lg-10\">\n                                    <input type=\"text\" [(ngModel)]=\"name\" name=\"name\" class=\"form-control\" id=\"name\" placeholder=\"Gmail\">\n                                </div>\n                            </div>\n                            <div class=\"form-group\">\n                                <label for=\"username\" class=\"col-lg-2 control-label\">Emial ID</label>\n                                <div class=\"col-lg-10\">\n                                    <input type=\"email\" [(ngModel)]=\"username\" name=\"username\" class=\"form-control\" id=\"username\" placeholder=\"example@email.com\">\n                                </div>\n                            </div>\n                            <div class=\"form-group\">\n                                <label for=\"password\" class=\"col-lg-2 control-label\">Password</label>\n                                <div class=\"col-lg-10\">\n                                    <input type=\"password\" [(ngModel)]=\"password\" name=\"password\" class=\"form-control\" id=\"password\" placeholder=\"Password\">\n                                </div>\n                            </div>\n                            <div class=\"form-group\">\n                                <div class=\"col-lg-10 col-lg-offset-2\">\n                                    <button (click)=\"onSave()\" class=\"btn btn-success\">Save</button>\n                                    <button type=\"reset\" (click)=\"hideChildModal()\" class=\"btn btn-default\">Cancel</button>\n                                </div>\n                            </div>\n                        </fieldset>\n                    </form>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>"
+module.exports = "<div class=\"container\">\n    <h2 class=\"page-header\"><strong>Dashboard</strong></h2>\n    <div *ngFor=\"let account of accounts; let i = index;\">\n        <div class=\"col-md-3\">\n            <div class=\"card\">\n                <div class=\"container\">\n                    <h6>{{account.name}}</h6>\n                    <button class=\"btn btn-primary\" (click)=\"gotoMail(i)\">View Mailbox</button>\n                </div>\n            </div>\n        </div>\n    </div>\n    <div class=\"col-md-3\">\n        <div class=\"card\">\n            <div class=\"container\">\n                <h6>Add New Account</h6>\n                <button class=\"btn btn-success\" (click)=\"showChildModal()\">Add Account</button>\n            </div>\n        </div>\n    </div>\n\n    <!-- Add account modal -->\n    <div bsModal #childModal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"mySmallModalLabel\" aria-hidden=\"true\">\n        <div class=\"modal-dialog modal-lg\">\n            <div class=\"modal-content\">\n                <div class=\"modal-header\">\n                    <h4 class=\"modal-title pull-left\">Add Account</h4>\n                    <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"hideChildModal()\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n                </div>\n                <div class=\"modal-body\">\n                    <form class=\"form-horizontal\">\n                        <fieldset>\n                            <div class=\"form-group\">\n                                <label for=\"name\" class=\"col-lg-2 control-label\">Account Name</label>\n                                <div class=\"col-lg-10\">\n                                    <input type=\"text\" [(ngModel)]=\"name\" name=\"name\" class=\"form-control\" id=\"name\" placeholder=\"Gmail\">\n                                </div>\n                            </div>\n                            <div class=\"form-group\">\n                                <label for=\"username\" class=\"col-lg-2 control-label\">Emial ID</label>\n                                <div class=\"col-lg-10\">\n                                    <input type=\"email\" [(ngModel)]=\"username\" name=\"username\" class=\"form-control\" id=\"username\" placeholder=\"example@email.com\">\n                                </div>\n                            </div>\n                            <div class=\"form-group\">\n                                <label for=\"password\" class=\"col-lg-2 control-label\">Password</label>\n                                <div class=\"col-lg-10\">\n                                    <input type=\"password\" [(ngModel)]=\"password\" name=\"password\" class=\"form-control\" id=\"password\" placeholder=\"Password\">\n                                </div>\n                            </div>\n                            <div class=\"form-group\">\n                                <div class=\"col-lg-10 col-lg-offset-2\">\n                                    <button (click)=\"onSave()\" class=\"btn btn-success\">Save</button>\n                                    <button type=\"reset\" (click)=\"hideChildModal()\" class=\"btn btn-default\">Cancel</button>\n                                </div>\n                            </div>\n                        </fieldset>\n                    </form>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 
 /***/ 780:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n  <!--<ul>\n    <li *ngFor=\"let item of list\">{{item}}</li>\n  </ul>-->\n  <!--<div *ngIf=\"user\">-->\n    <div class=\"card email\" *ngFor=\"let item of emails\">\n      <div class=\"container\">\n        <p>\n          <b>{{item.sub}}</b>\n        </p>\n        <div class=\"pull-right\">\n          <button class=\"btn btn-primary\" (click)=\"onView(item.id); showChildModal()\">View</button>\n          <button class=\"btn btn-danger\" (click)=\"onDelete(item.id)\">Delete</button>\n        </div>\n      </div>\n    </div>\n  <!--</div>-->\n\n  <div bsModal #childModal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"mySmallModalLabel\" aria-hidden=\"true\">\n    <div class=\"modal-dialog modal-lg\">\n      <div class=\"modal-content\">\n        <div class=\"modal-header\">\n          <h4 class=\"modal-title pull-left\">Content</h4>\n          <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"hideChildModal()\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n        </div>\n        <div class=\"modal-body\">\n          {{content}}\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
+module.exports = "<div class=\"container-fluid\">\n    <div class=\"card email\" *ngFor=\"let item of emails\">\n        <div class=\"container\">\n            <p>\n                <b>{{item.sub}}</b>\n            </p>\n            <div class=\"pull-right\">\n                <button class=\"btn btn-primary\" (click)=\"onView(item.id); showChildModal()\">View</button>\n                <button class=\"btn btn-danger\" (click)=\"onDelete(item.id)\">Delete</button>\n            </div>\n        </div>\n    </div>\n    <div bsModal #childModal=\"bs-modal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"mySmallModalLabel\" aria-hidden=\"true\">\n        <div class=\"modal-dialog modal-lg\">\n            <div class=\"modal-content\">\n                <div class=\"modal-header\">\n                    <h4 class=\"modal-title pull-left\">Content</h4>\n                    <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"hideChildModal()\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n                </div>\n                <div class=\"modal-body\">\n                    {{content}}\n                    <p style=\"color: red;\">{{error}}</p>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n<app-footer></app-footer>"
 
 /***/ }),
 

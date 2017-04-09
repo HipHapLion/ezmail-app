@@ -15,7 +15,7 @@ export class UserAccountComponent implements OnInit {
 
 
   user: Object;
-  // account: Object;
+  accounts: Object;
 
   constructor(
     private router: Router,
@@ -25,6 +25,7 @@ export class UserAccountComponent implements OnInit {
   ngOnInit() {
     this.authService.getProfile().subscribe(profile => {
       this.user = profile.user;
+      this.accounts = profile.user.accountInfo;
     },
       err => {
         console.log(err);

@@ -1,8 +1,4 @@
 <div class="container-fluid">
-    <!--<ul>
-    <li *ngFor="let item of list">{{item}}</li>
-  </ul>-->
-    <!--<div *ngIf="user">-->
     <div class="card email" *ngFor="let item of emails">
         <div class="container">
             <p>
@@ -14,8 +10,6 @@
             </div>
         </div>
     </div>
-    <!--</div>-->
-
     <div bsModal #childModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -27,6 +21,7 @@
                 </div>
                 <div class="modal-body">
                     {{content}}
+                    <p style="color: red;">{{error}}</p>
                 </div>
             </div>
         </div>

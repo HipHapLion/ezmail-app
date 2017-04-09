@@ -1,23 +1,20 @@
 footer {
-    position: fixed;
-    bottom: 0;
-    // left: 40%;
-    margin-left: 45%;
+    width: 680px;
+    text-align: center;
+    height: 40px;
+    padding-top: 10px;
+    margin: -50px auto 0 auto;
 }
 .footer-block {
     ul {
-        margin-left: -30%;
-        padding-left: 0;
         li {
             display: inline;
         }
     }
     .spacer {
         padding: 0 10px;
-
-    }    
+        }    
 }
-
-// #cp-right{
-//     margin-left: 45%;
-// }
+#clearfooter {
+height: 50px;
+}
